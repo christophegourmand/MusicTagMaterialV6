@@ -6,11 +6,50 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
+    // =========================== VERS HOME =================================
     public function displayHome()
     {
         // traitement
-        return view('nomDossier.nomFichier', array(
+        return view('layout_extends.layout_ext_home', array(
             'title' => 'bienvenue sur la page HOME'
         ));
     }
+    
+    // ========================= VERS INSCRIPTION ============================
+    public function displayRegistration()
+    {
+        // traitement
+        return view('layout_extends.security.layout_ext_registration', array(
+            'title' => 'bienvenue sur la page REGISTRATION'
+        ));
+    }
+    
+    // ========================== VERS PROFILE ===============================
+    public function displayProfile()
+    {
+        // traitement
+        return view('layout_extends.user.layout_ext_profile', array(
+            'title' => 'bienvenue sur la page PROFILE'
+        ));
+    }
+
+    // ========================== VERS MONCOMPTE ===============================
+    public function displayLogin()
+    {
+        // traitement
+        return view('layout_extends.security.layout_ext_login', array(
+            'title' => 'bienvenue sur la page LOGIN'
+        ));
+    }
+
+    // ========================== VERS MATERIAL CREATE ===============================
+    public function displayMaterialCreate()
+    {
+        // traitement
+        return view('layout_extends.security.layout_ext_login', array(
+            'title' => 'bienvenue sur la page MATERIAL CREATE'
+        ));
+    }
+
+
 }

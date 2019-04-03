@@ -15,7 +15,7 @@
 
 </head>
 
-<body class="bg-brownBlack_OFF">
+<body class="bg-brownBlack">
     
     <header class="text-white">
         @include('layout_includes.layout_incl_header')
@@ -26,7 +26,7 @@
         Anciennement FOS zone
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
         @yield('layout_block_body')
     </div>
 

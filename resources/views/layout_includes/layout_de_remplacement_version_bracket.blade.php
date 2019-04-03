@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-brownLeather">
+<nav class="navbar navbar-expand-lg navbar-dark bg-brownDarkLeather">
     <a class="navbar-brand txt-brownLight" href="path('home')">MusicTagMaterial</a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToCollapse" aria-controls="navbarToCollapse"

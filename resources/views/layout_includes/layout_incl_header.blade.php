@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-brownLeather">
+<nav class="navbar navbar-expand-lg navbar-dark bg-brownDarkLeather">
     <a class="navbar-brand txt-brownLight" href="home">MusicTagMaterial</a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToCollapse" aria-controls="navbarToCollapse"
@@ -33,7 +33,6 @@
         </div>
 
         @section("header_block_account")
-
             <!--
             <div class="navbar-nav">
                 <a class="nav-item nav-link btn btn-warning text-white mx-1 bg-yellowLight text-dark" href="/inscription">Se Connecter</a>
@@ -50,13 +49,11 @@
     </div>
 </nav>
 
+<!-- 
 <ul class="ulVolante">
+    <li><a href="http://localhost:8000/welcome">/welcome</a></li>
     <li><a href="http://localhost:8000/">/</a></li>
-    <li><a href="http://localhost:8000/register">/register</a></li>
-    <li><a href="http://localhost:8000/register/confirmed">register/confirmed</a></li>
+    <li><a href="http://localhost:8000/myaccount">/myaccount</a></li>
     <li><a href="http://localhost:8000/login">/login</a></li>
-    <li><a href="http://localhost:8000/moncompte">/moncompte (mien)</a></li>
-    <li><a href="http://localhost:8000/profile">/profile</a></li>
-    <li><a href="http://localhost:8000/profile/edit">/profile/edit</a></li>
-    <li><a href="http://localhost:8000/profile/change-password">/profile/change-password</a></li>
 </ul>
+ -->

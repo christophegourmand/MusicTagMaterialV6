@@ -16,11 +16,18 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+// ! ============================================ 
+
+
 //? mes routes:
-Route::get('/', 'MainController@displayHome')->name('homepage');
 
+Route::get('/', 'MainController@displayHome')->name('page_home'); //* OK
 
+Route::get('/registration', 'MainController@displayRegistration')->name('page_registration'); //* OK
+Route::get('/profile', 'MainController@displayProfile')->name('page_profile'); //* OK
+Route::get('/login', 'MainController@displayLogin')->name('page_login'); //* OK
 
+Route::get('/material/create', 'MainController@displayMaterialCreate')->name('page_materialCreate');
 
 //? from Marie:
 // Route::get('/', 'Shop\MainController@index')->name('homepage');

@@ -1,14 +1,55 @@
-
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
 
-// Bootstrap
+// Bootstrap 4
 @import '~bootstrap/scss/bootstrap';
 
+
 .navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+// :root {
+//   --brownBlack: #242015 ;
+//   --brownDarkLeather: #2E2A1C;
+// }
+
+.bg-brownBlack {
+	background-color: #242015 !important;
+}
+.bg-brownDarkLeather {
+	background-color: #2E2A1C !important;
+}
+.bg-brownLightLeather {
+	background-color: #383625 !important;
+}
+
+.bg-redDark {
+	background-color: #A01010 !important;
+}
+
+.bg-yellowLight {
+	background-color: #D8BB30 !important;
+}
+
+
+.bg-orange {
+	background-color: #FFB100 !important;
+}
+
+.txt-brownLight {
+	color: #968662 !important;
+}
+
+.txt-grey {
+	color: #020202 !important;
+}
+
+
+body {
+	color:white;
 }

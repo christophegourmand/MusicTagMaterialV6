@@ -1,6 +1,6 @@
-<link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap-reboot.min.css') }}" />
+<!-- <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap-reboot.min.css') }}" />
 <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap-grid.min.css') }}" />
-<link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+<link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" /> -->
 <link type="text/css" rel="stylesheet" href="{{ asset('css/app.css') }}" />
 
 <style>
@@ -12,6 +12,5 @@
         border: 1px solid black;
 
         /* z-index: 2; */
-
     }
 </style>
