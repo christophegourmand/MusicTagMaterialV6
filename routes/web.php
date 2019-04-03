@@ -39,3 +39,6 @@ Route::get('/material/create', 'MainController@displayMaterialCreate')->name('pa
 // Route::patch($uri, $callback);
 // Route::delete($uri, $callback);
 // Route::options($uri, $callback);
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

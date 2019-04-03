@@ -17,7 +17,7 @@
 
 <body class="bg-brownBlack">
     
-    <header class="text-white">
+    <header class="text-light">
         @include('layout_includes.layout_incl_header')
 
     </header>

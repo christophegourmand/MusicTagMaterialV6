@@ -28,15 +28,15 @@
                 </div>
             </div>
             
-            <a class="nav-item nav-link btn btn-warning text-white mx-1" href="material_create">Vendre (à déplacer)</a>
+            <a class="nav-item nav-link btn btn-warning text-light mx-1" href="material_create">Vendre (à déplacer)</a>
 
         </div>
 
         @section("header_block_account")
             <!--
             <div class="navbar-nav">
-                <a class="nav-item nav-link btn btn-warning text-white mx-1 bg-yellowLight text-dark" href="/inscription">Se Connecter</a>
-                <a class="nav-item nav-link btn btn-danger text-white mx-1 bg-redDark" href="/inscription">Créer un compte</a>
+                <a class="nav-item nav-link btn btn-warning text-light mx-1 bg-yellowLight text-dark" href="/inscription">Se Connecter</a>
+                <a class="nav-item nav-link btn btn-danger text-light mx-1 bg-redDark" href="/inscription">Créer un compte</a>
             </div> 
             -->
 
