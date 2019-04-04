@@ -24,7 +24,7 @@ class MaterialsController extends Controller
      */
     public function create()
     {
-        return view('layout_extends.security.layout_ext_login', array(
+        return view('layout_extends.material.layout_ext_materialCreate', array(
             'title' => 'bienvenue sur la page MATERIAL CREATE'
         ));
     }

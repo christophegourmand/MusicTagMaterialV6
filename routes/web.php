@@ -27,7 +27,7 @@ Route::get('/registration', 'MainPagesController@displayRegistration')->name('pa
 Route::get('/profile', 'MainPagesController@displayProfile')->name('page_profile'); //* OK
 Route::get('/login', 'MainPagesController@displayLogin')->name('page_login'); //* OK
 
-Route::get('/material/create', 'MainPagesController@displayMaterialCreate')->name('page_materialCreate');
+// Route::get('/material/create', 'MainPagesController@displayMaterialCreate')->name('page_materialCreate');
 
 //? from Marie:
 // Route::get('/', 'Shop\MainController@index')->name('homepage');
@@ -47,4 +47,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // création de toutes les routes pour les actions() du controller MaterialsController:
-Route::resource('materials', 'MaterialsController');
+Route::resource('material', 'MaterialsController');
