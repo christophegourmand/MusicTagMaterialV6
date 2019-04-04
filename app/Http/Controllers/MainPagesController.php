@@ -53,14 +53,4 @@ class MainPagesController extends Controller
         ));
     }
 
-    // ========================== VERS MATERIAL CREATE ===============================
-    public function displayMaterialCreate()
-    {
-        // traitement
-        return view('layout_extends.security.layout_ext_login', array(
-            'title' => 'bienvenue sur la page MATERIAL CREATE'
-        ));
-    }
-
-
 }

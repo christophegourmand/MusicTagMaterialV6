@@ -39,6 +39,12 @@ Route::get('/material/create', 'MainPagesController@displayMaterialCreate')->nam
 // Route::patch($uri, $callback);
 // Route::delete($uri, $callback);
 // Route::options($uri, $callback);
+
+// création de toutes les routes pour les actions() des controllers du dossier Auth:
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home'); // = MON ESPACE
+// route vers un page home appartenant au user ( = mon espace):
+Route::get('/home', 'HomeController@index')->name('home');
+
+// création de toutes les routes pour les actions() du controller MaterialsController:
+Route::resource('materials', 'MaterialsController');

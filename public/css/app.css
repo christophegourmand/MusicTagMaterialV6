@@ -10660,6 +10660,11 @@ a.text-dark:focus {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+/* :root {
+  --brownBlack: #242015 ;
+  --brownDarkLeather: #2E2A1C;
+} */
+
 .bg-brownBlack {
   background-color: #242015 !important;
 }
