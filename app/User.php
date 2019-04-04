@@ -16,8 +16,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'firstname', 'lastname', 'phone', 'avatarlink'
     ];
+
+    /* ------------------------------------- 
+    Mass assignment is when you send an array to the model creation, basically setting a bunch of fields on the model in a single go, rather than one by one, something like:
+    $user = new User(Input::all()); 
+    -------------------------------------- */
 
     /**
      * The attributes that should be hidden for arrays.

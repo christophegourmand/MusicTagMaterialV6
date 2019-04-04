@@ -21,6 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('firstname', 50);
+            $table->string('lastname', 50);
+            $table->string('phone', 20);
+            $table->string('avatarlink');
+            // + adresse_id clé étrangère
+
         });
     }
 

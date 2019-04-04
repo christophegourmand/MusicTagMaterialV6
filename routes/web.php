@@ -21,13 +21,13 @@ Route::get('/welcome', function () {
 
 //? mes routes:
 
-Route::get('/', 'MainController@displayHome')->name('page_home'); //* OK
+Route::get('/', 'MainPagesController@displayHome')->name('page_home'); //* OK
 
-Route::get('/registration', 'MainController@displayRegistration')->name('page_registration'); //* OK
-Route::get('/profile', 'MainController@displayProfile')->name('page_profile'); //* OK
-Route::get('/login', 'MainController@displayLogin')->name('page_login'); //* OK
+Route::get('/registration', 'MainPagesController@displayRegistration')->name('page_registration'); //* OK
+Route::get('/profile', 'MainPagesController@displayProfile')->name('page_profile'); //* OK
+Route::get('/login', 'MainPagesController@displayLogin')->name('page_login'); //* OK
 
-Route::get('/material/create', 'MainController@displayMaterialCreate')->name('page_materialCreate');
+Route::get('/material/create', 'MainPagesController@displayMaterialCreate')->name('page_materialCreate');
 
 //? from Marie:
 // Route::get('/', 'Shop\MainController@index')->name('homepage');
@@ -41,4 +41,4 @@ Route::get('/material/create', 'MainController@displayMaterialCreate')->name('pa
 // Route::options($uri, $callback);
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home'); // = MON ESPACE
