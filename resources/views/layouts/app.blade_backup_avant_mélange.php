@@ -7,14 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('layout_block_title')</title>
-
-    <!-- ici les stylesheets communs à toutes les pages: -->
-    @include('layout_includes.layout_incl_stylesheets')
-
-    <!-- ici les stylesheets custom, chaque twig écrasera avec ses propres stylsheets custom -->
-    @yield('layout_block_customStylesheets')
-
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
