@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('layout_block_title')
     {{ $title }}
@@ -8,14 +8,15 @@
     @parent
 @endsection
 
-@section('layout_block_body')
-
+@section('content')
+<div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">{{ $title }}</h1>
 
         </div>
     </div>
+</div>
 
 @endsection
 
