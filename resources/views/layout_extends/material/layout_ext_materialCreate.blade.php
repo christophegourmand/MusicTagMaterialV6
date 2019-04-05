@@ -10,6 +10,8 @@
 
 @section('content')
 
+<h2 class="text-center pb-3">Création d'une annonce</h2>
+
 <div class="container-fluid">
     <form method="POST" action="{{ url('/material/create') }}">
         @csrf
@@ -26,10 +28,11 @@
                     </span>
                 @endif
             </div>
+            
         </div>
         
         <div class="form-group row">
-            <label for="builtyear" class="col-md-4 col-form-label text-md-right">{{ __('Année de fabrication') }}</label>
+            <label for="builtyear" class="col-md-4 col-form-label text-md-right">{{ __('Date de fabrication') }}</label>
             <div class="col-md-6">
                 <input id="builtyear" type="date" class="form-control" name="builtyear" value="{{ old('builtyear') }}" autofocus>
                 @if ($errors->has('builtyear'))
@@ -40,7 +43,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description. Faites nous rêver...') }}</label>
+            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description:') }}</label>
             <div class="col-md-6">
                 <textarea id="description" name="description" class="form-control" rows="5">{{ old('description') }}</textarea>
                 @if ($errors->has('description'))
@@ -50,10 +53,22 @@
                 @endif
             </div>
         </div>
+        
+        <div class="form-group row">
+            <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Prix*') }}</label>
+            <div class="col-md-6">
+                <input id="price" type="number" class="form-control" name="price" value="{{ old('price') }}" required autofocus>
+                @if ($errors->has('price'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('price') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
 
         <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-danger">
                     {{ __('Enregistrer et mettre en vente') }}
                 </button>
             </div>

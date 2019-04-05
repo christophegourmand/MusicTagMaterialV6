@@ -19,10 +19,20 @@ class CreateMaterialsTable extends Migration
             $table->string('productmodel');
             $table->date('builtyear')->nullable();
             $table->longText('description')->nullable();
-            $table->float('amount');
+            $table->float('price');
 
+            // Here I set the foreign key for relation :
+                // (1,1) User sell (0,N) materials
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
+
+            // Here I set the foreign key for relation :
+                // (0,1) Category reference (0,N) materials
+            $table->unsignedInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
 
             Schema::enableForeignKeyConstraints();
 
