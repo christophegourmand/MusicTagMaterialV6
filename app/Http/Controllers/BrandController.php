@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Material;
 
-class MaterialsController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +17,13 @@ class MaterialsController extends Controller
     }
 
     /**
-     * Affiche la vue avec formulaire de création d'une annonce de matériel
+     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('layout_extends.material.layout_ext_materialCreate', array(
-            'title' => 'bienvenue sur la page MATERIAL CREATE'
-        ));
+        //
     }
 
     /**

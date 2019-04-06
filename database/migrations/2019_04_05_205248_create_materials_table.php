@@ -32,7 +32,10 @@ class CreateMaterialsTable extends Migration
             // Here I set the foreign key for relation :
                 // (0,1) Category reference (0,N) materials
             $table->unsignedInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+            $table->foreign('category_id')
+                    ->references('id')
+                    ->on('categories')
+                    ->onDelete('set null');
 
             Schema::enableForeignKeyConstraints();
 

@@ -41,4 +41,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * Get the material having that category.
+     */
+    public function materials()
+    {
+        return $this->hasMany('App\Material');
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAudioTable extends Migration
+class CreateAudiosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAudioTable extends Migration
      */
     public function up()
     {
-        Schema::create('audio', function (Blueprint $table) {
+        Schema::create('audios', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('videolink');
@@ -22,7 +22,10 @@ class CreateAudioTable extends Migration
             // Here I set the foreign key for relation :
             // (1,1) Material reference (0,N) audios
             $table->unsignedInteger('material_id');
-            $table->foreign('material_id')->references('id')->on('materials')->onDelete('cascade');
+            $table->foreign('material_id')
+                    ->references('id')
+                    ->on('materials')
+                    ->onDelete('cascade');
         });
     }
 
@@ -33,6 +36,6 @@ class CreateAudioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('audio');
+        Schema::dropIfExists('audios');
     }
 }

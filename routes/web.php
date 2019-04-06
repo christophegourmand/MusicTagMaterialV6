@@ -29,10 +29,7 @@ Route::get('/login', 'MainPagesController@displayLogin')->name('page_login'); //
 
 // Route::get('/material/create', 'MainPagesController@displayMaterialCreate')->name('page_materialCreate');
 
-//? from Marie:
-// Route::get('/', 'Shop\MainController@index')->name('homepage');
-
-//? from official:
+//? inspiration from from official Laravel website:
 // Route::get($uri, $callback);
 // Route::post($uri, $callback);
 // Route::put($uri, $callback);
@@ -46,5 +43,14 @@ Auth::routes();
 // route vers un page home appartenant au user ( = mon espace):
 Route::get('/home', 'HomeController@index')->name('home');
 
-// création de toutes les routes pour les actions() du controller MaterialsController:
-Route::resource('material', 'MaterialsController');
+// création de toutes les routes pour les actions() du controller MaterialController:
+Route::resource('materials', 'MaterialController');
+
+Route::resource('brands', 'BrandController');
+
+/*  It could have been done with all controllers at once :
+        Route::resources([
+        'materials' => 'MaterialController',
+        'Brands' => 'BrandController'
+        ]);
+*/

@@ -15,6 +15,22 @@ class Material extends Model
     }
 
     /**
+     * Get the category that owns the material.
+     */
+    public function users()
+    {
+        return $this->belongsTo('App\User');
+    }
+    
+    /**
+     * Get the tags attributed to that material
+     */
+    public function tags()
+    {
+        return $this->hasMany('App\MaterialTagConnection');
+    }
+
+    /**
      * Get the photos for that material.
      */
     public function photos()
@@ -29,7 +45,7 @@ class Material extends Model
     {
         return $this->hasMany('App\Audio');
     }
-    
+
     /**
      * Get the videos for that material.
      */
@@ -37,5 +53,6 @@ class Material extends Model
     {
         return $this->hasMany('App\Video');
     }
+
 
 }
