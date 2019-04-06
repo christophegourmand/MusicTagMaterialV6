@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Brand;
 
 class BrandController extends Controller
 {
@@ -23,7 +24,9 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('layout_extends.brand.layout_ext_brandCreate', array(
+            'title' => 'MTM - Creer une Marque'
+        ));
     }
 
     /**
@@ -34,7 +37,14 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $brand_name = $request->input('brand_name');
+        $brand_photolink = $request->input('brand_photolink');
+        echo '<pre>';
+            var_dump($brand_name);
+            echo '<hr>';
+            var_dump($brand_photolink);
+        echo '</pre>';
     }
 
     /**
@@ -45,7 +55,9 @@ class BrandController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('layout_extends.brand.layout_ext_brandShow', array(
+            'title' => 'MTM - Voir une Marque'
+        ));
     }
 
     /**
@@ -56,7 +68,9 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('layout_extends.brand.layout_ext_brandForm', array(
+            'title' => 'MTM - Creer une Marque'
+        ));
     }
 
     /**
