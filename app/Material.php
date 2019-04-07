@@ -8,7 +8,7 @@ class Material extends Model
 {
 
     /**
-     * Get the brands related to that material.
+     * Get the brands related to that material. //! avant j'avais marqué function brands() au pluriel
      */
     public function brands()
     {
