@@ -42,6 +42,7 @@ Auth::routes();
 
 // route vers un page home appartenant au user ( = mon espace):
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/test', 'TestController@test')->name('route_test');
 
 //? création de toutes les routes pour les actions() du controller MaterialController:
     //! routes turned off so i can choose wich will use middleware.

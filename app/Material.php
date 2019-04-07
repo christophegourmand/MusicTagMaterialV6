@@ -10,7 +10,7 @@ class Material extends Model
     /**
      * Get the brands related to that material. //! avant j'avais marqué function brands() au pluriel
      */
-    public function brands()
+    public function brand()
     {
         return $this->belongsTo('App\Brand');
     }
@@ -19,7 +19,7 @@ class Material extends Model
     /**
      * Get the category that owns the material.
      */
-    public function categories()
+    public function category()
     {
         return $this->belongsTo('App\Category');
     }
@@ -27,7 +27,7 @@ class Material extends Model
     /**
      * Get the user (only one) that owns the material.
      */
-    public function users()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
@@ -63,6 +63,4 @@ class Material extends Model
     {
         return $this->hasMany('App\Video');
     }
-
-
 }

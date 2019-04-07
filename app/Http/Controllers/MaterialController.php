@@ -41,6 +41,8 @@ class MaterialController extends Controller
     {
         // Get a collection of brands from database:
         $brands = \App\Brand::all()->sortBy('name');
+        $categories = \App\Category::all();//->sortBy('name');
+        $materialToEdit = new Material;
 
         // TODO : ici ajouter les infos du material à vide
      
@@ -48,6 +50,8 @@ class MaterialController extends Controller
             'title' => 'bienvenue sur la page MATERIAL CREATE',
             // 'actionAsking' => 'materials.create',
             'brands' => $brands,
+            'categories' => $categories,
+            'materialToEdit' => $materialToEdit,
             'submitActionMethod' => 'POST',
             'submitActionRoute' => route('materials.store'),
             'submitButtonName' => 'Valider les changements'
@@ -84,7 +88,7 @@ class MaterialController extends Controller
         $material->save();
 
         // display the edited Material 's page : 
-        return redirect()->route('materials.show', $id);
+        return redirect()->route('materials.show', $material->id);
     
     }
 
@@ -101,22 +105,22 @@ class MaterialController extends Controller
         $materialToShow = \App\Material::find($id);
         
         // $brand = $materialToShow->brands()->where('brand_id',5);
-        // $materialToShow->brand_id //? renvoi bien 5
-        
-        echo '<pre>';
-        var_dump($materialToShow->brands->name);
-        echo '</pre>';
-        exit('END');
+        // $materialToShow->brand_id; //? renvoi bien 5
+        $materialToShow->brand->name; //? renvoi bien le nom de la marque
+        // echo '<pre>';
+        // var_dump($materialToShow->brand->name);
+        // echo '</pre>';
+        // exit('END');
 
         // todo: si user_id  est egale au  material->user_id
             // passer dans la vue la route pour faire un 'edit' + et passer le material_id aussi
-            // afficher un bouton modifier permettant de faire l'edit 
+            // afficher un bouton modifier permettant de faire l'edit
 
         return view('layout_extends.material.layout_ext_materialShow', array(
             'title' => 'bienvenue sur la page MATERIAL SHOW',
             'routeName' => 'materials.update',
             'materialToShow' => $materialToShow,
-
+            'brandToShow' => $materialToShow->brand->name,  //! peut être que je vais virer ça et le faire dans la vue
             'submitActionRoute' => route('materials.update', $id),
             'submitButtonName' => 'Valider les changements'
         ));

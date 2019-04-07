@@ -9,7 +9,7 @@ class Audio extends Model
     /**
      * Get the material that owns the audios.
      */
-    public function materials()
+    public function material()
     {
         return $this->belongsTo('App\Material');
     }

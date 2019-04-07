@@ -12,22 +12,38 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2"> ici les tags</div>
-        <div class="col-md-8">
+        <!-- ========================================= TAGS ================================== -->
+        <div class="col-md-2 border border-light rounded"> ici les tags</div>
+        <!-- ========================================= MATERIAL ================================== -->
+        <div class="col-md-8 border border-light rounded p-4">
             
             <div class="row text-white">
                 <div class="col-md-8">
-                    <div class="col-md-7">marque</div>
-                    <div class="col-md-12">modele</div>
+                    <div class="col-md-7 bg-danger">
+                        <h3>
+                            {{$materialToShow->brand->name}}
+                        </h3>
+                    </div>
+                    <div class="col-md-12 p-0">
+                        <h3>
+                            {{$materialToShow->productmodel}}
+                        </h3>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="">Ville</div>
-                    <div class="">prix</div>
+                <div class="col-md-4 text-right">
+                    <div class="">
+                        <h3>Ville</h3>
+                    </div>
+                    <div class="">
+                        <h3>{{$materialToShow->price}} €</h3>
+                    </div>
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-md-7">
+                <img src="https://via.placeholder.com/400" alt="">
+<!--                
                     <div class="carousel slide">
                         <ol class="carousel-indicators">
                             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -54,13 +70,18 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
+-->
                 </div>
                 <div class="col-md-5">
-                    description
+                    {{$materialToShow->description}}
                 </div>
             </div>
         </div>
-        <div class="col-md-2"> ici les tutos</div>
+        
+        <!-- ========================================= TUTOS ================================== -->
+        <div class="col-md-2 border border-light rounded"> 
+            ici les tutos
+        </div>
     </div>
 </div>
 

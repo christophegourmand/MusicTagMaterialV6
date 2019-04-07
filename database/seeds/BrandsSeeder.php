@@ -12,7 +12,7 @@ class BrandsSeeder extends Seeder
     public function run()
     {
         $brand = new \App\Brand();
-        $brand->name = "_sans marque";
+        $brand->name = "-sans marque";
         $brand->photo = 'noimage.jpg';
         $brand->save();
     }

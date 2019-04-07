@@ -9,7 +9,7 @@ class Photo extends Model
     /**
      * Get the material that owns the photos.
      */
-    public function materials()
+    public function material()
     {
         return $this->belongsTo('App\Material');
     }

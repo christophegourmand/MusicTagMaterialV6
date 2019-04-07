@@ -9,7 +9,7 @@ class MaterialTagConnection extends Model
     /**
      * Get the tags related to that material.
      */
-    public function tags()
+    public function tag()
     {
         return $this->belongsTo('App\Tag');
     }
@@ -18,7 +18,7 @@ class MaterialTagConnection extends Model
     /**
      * Get the materials related to that tag.
      */
-    public function materials()
+    public function material()
     {
         return $this->belongsTo('App\Material');
     }
