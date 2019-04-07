@@ -13,10 +13,23 @@
 <h2 class="text-center pb-3">Création d'une annonce</h2>
 
 <div class="container-fluid">
-    <form method="POST" action="{{ url('/material/create') }}">
+    <form method="POST" action="{{ url('/material/create') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- TODO : ICI AJOUTER CHAMPS 'MARQUE/FABRICANT', Attention, on doit pouvoir en choisir plusieurs -->
+
+        <div class="form-group row">
+            <label for="material_brand" class="col-md-4 col-form-label text-md-right">{{ __('marque*') }}</label>
+            <div class="col-md-6">
+                <input id="material_brand" type="text" class="form-control" name="material_brand" value="{{ old('material_brand') }}" required autofocus>
+                @if ($errors->has('material_brand'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('material_brand') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
 
         <div class="form-group row">
             <label for="productmodel" class="col-md-4 col-form-label text-md-right">{{ __('Modèle/référence du matériel*') }}</label>
@@ -28,7 +41,6 @@
                     </span>
                 @endif
             </div>
-            
         </div>
         
         <div class="form-group row">

@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'lastname' => ['required', 'string', 'max:50'],
             'firstname' => ['required', 'string', 'max:50'],
             'phone' => ['string', 'max:20'],
-            'avatarlink' => ['string', 'max:191']
+            'avatar' => ['string', 'max:191']
         ]);
     }
 
@@ -74,7 +74,7 @@ class RegisterController extends Controller
             'lastname' => $data['lastname'],
             'firstname' => $data['firstname'],
             'phone' => $data['phone'],
-            'avatarlink' => $data['avatarlink']
+            'avatar' => $data['avatar']
         ]);
     }
 }

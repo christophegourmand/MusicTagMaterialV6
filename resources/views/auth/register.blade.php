@@ -91,12 +91,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="avatarlink" class="col-md-4 col-form-label text-md-right">{{ __('lien vers votre avatar') }}</label>
+                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('lien vers votre avatar') }}</label>
                             <div class="col-md-6">
-                                <input id="avatarlink" type="text" class="form-control" name="avatarlink" value="http://wlksherlqkje" autofocus>
-                                @if ($errors->has('avatarlink'))
+                                <input id="avatar" type="text" class="form-control" name="avatar" value="http://wlksherlqkje" autofocus>
+                                @if ($errors->has('avatar'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('avatarlink') }}</strong>
+                                        <strong>{{ $errors->first('avatar') }}</strong>
                                     </span>
                                 @endif
                             </div>

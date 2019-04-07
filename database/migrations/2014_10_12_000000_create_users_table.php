@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('firstname', 50);
             $table->string('lastname', 50);
             $table->string('phone', 20)->nullable();
-            $table->string('avatarlink')->nullable();
+            $table->string('avatar')->nullable();
             // + adresse_id clé étrangère
 
         });

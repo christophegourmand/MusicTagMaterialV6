@@ -16,7 +16,7 @@ class CreatePhotosTable extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('photolink');
+            $table->string('photo');
             $table->string('altdescription', 100)->nullable();
 
             // Here I set the foreign key for relation :

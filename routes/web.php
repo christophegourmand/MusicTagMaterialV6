@@ -43,14 +43,18 @@ Auth::routes();
 // route vers un page home appartenant au user ( = mon espace):
 Route::get('/home', 'HomeController@index')->name('home');
 
-// création de toutes les routes pour les actions() du controller MaterialController:
-Route::resource('materials', 'MaterialController');
+//? création de toutes les routes pour les actions() du controller MaterialController:
+    //! routes turned off so i can choose wich will use middleware.
+    Route::resource('materials', 'MaterialController');
+    Route::resource('brands', 'BrandController');
+            /*  It could have been done with all controllers at once :
+                    Route::resources([
+                    'materials' => 'MaterialController',
+                    'Brands' => 'BrandController'
+                    ]);
+            */
 
-Route::resource('brands', 'BrandController');
-
-/*  It could have been done with all controllers at once :
-        Route::resources([
-        'materials' => 'MaterialController',
-        'Brands' => 'BrandController'
-        ]);
-*/
+// Route::get('/materials', 'MaterialController@index')->name('page_materials_index');
+// Route::get('/materials/create', 'MaterialController@create')->name('page_materials_create')->middleware('auth');
+// Route::post('/materials', 'MaterialController@store')->name('page_materials_store')->middleware('auth');
+    

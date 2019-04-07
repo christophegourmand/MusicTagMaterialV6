@@ -13,9 +13,8 @@
 <h2 class="text-center pb-3">Création d'une Marque</h2>
 
 <div class="container-fluid">
-    <form method="POST" action="{{ url('/brands') }}">
+    <form method="POST" action="{{ url('/brands') }}" enctype="multipart/form-data">
         @csrf
-
         <!-- TODO : ICI AJOUTER CHAMPS 'MARQUE/FABRICANT', Attention, on doit pouvoir en choisir plusieurs -->
 
         <div class="form-group row">
@@ -35,13 +34,14 @@
 
             <div class="col-md-6">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="brand_photolink" name="brand_photolink" >
-                    @if ($errors->has('brand_photolink'))
+                    <input type="file" class="custom-file-input" id="brand_photo" name="brand_photo" >
+
+                    @if ($errors->has('brand_photo'))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('brand_photolink') }}</strong>
+                            <strong>{{ $errors->first('brand_photo') }}</strong>
                         </span>
                     @endif
-                    <label class="custom-file-label" for="brand_photolink">Ajouter un image</label>
+                    <label class="custom-file-label" for="brand_photo">Ajouter un image</label>
                 </div>
             </div>
         </div>
@@ -53,7 +53,6 @@
                 </button>
             </div>
         </div>
-        
     </form>
 </div>
 
