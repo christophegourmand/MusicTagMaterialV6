@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Material extends Model
 {
+
+    /**
+     * Get the brands related to that material.
+     */
+    public function brands()
+    {
+        return $this->belongsTo('App\Brand');
+    }
+
+
     /**
      * Get the category that owns the material.
      */
@@ -15,7 +25,7 @@ class Material extends Model
     }
 
     /**
-     * Get the category that owns the material.
+     * Get the user (only one) that owns the material.
      */
     public function users()
     {

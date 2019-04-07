@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-//use App\Http\Controllers\Controller; // added by teacher, still works without.
+use App\Http\Controllers\Controller; // added by teacher, still works without.
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // so we can use the middlware and check if user is logged.
 use App\Material;
+use App\Brand;
 
 class MaterialController extends Controller
 {
@@ -38,12 +39,19 @@ class MaterialController extends Controller
      */
     public function create()
     {
+        // Get a collection of brands from database:
+        $brands = \App\Brand::all()->sortBy('name');
+     
         return view('layout_extends.material.layout_ext_materialCreate', array(
-            'title' => 'bienvenue sur la page MATERIAL CREATE'
+            'title' => 'bienvenue sur la page MATERIAL CREATE',
+            // 'actionAsking' => 'materials.create',
+            'submitActionMethod' => 'POST',
+            'submitActionRoute' => route('materials.store'),
+            'brands' => $brands
         ));
  
     // ==========================================================================================================================
-}
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -53,14 +61,19 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
+
+
         // validation of forms fields : 
             $this->validate($request, [
-                'material_name' => 'required'
+                'material_brand_id' => 'required',
+                'material_productmodel' => 'required',
+                'material_price' => 'required'
                 // todo: here put 'photofile' => 'image|'
             ]);
     
             // creation of 'material' instance :
             $material = new Material;
+            $material->brand_id = $request->input('material_brand_id');
             $material->productmodel = $request->input('material_productmodel');
             $material->builtyear = $request->input('material_builtyear');
             $material->description = $request->input('material_description');
@@ -69,9 +82,6 @@ class MaterialController extends Controller
 
             $material->save();
     
-            echo '<pre>';
-            var_dump($brand);
-            echo '</pre>';
     }
 
     // ==========================================================================================================================
@@ -96,7 +106,16 @@ class MaterialController extends Controller
      */
     public function edit($id)
     {
-        return 'FUNCTION EDIT'; 
+        // Get a collection of brands from database:
+        $brands = \App\Brand::all()->sortBy('name');
+
+        // TODO : ici ajouter les infos du material
+
+        return view('layout_extends.material.layout_ext_materialCreate', array(
+            'title' => 'bienvenue sur la page MATERIAL CREATE',
+            'routeName' => 'materials.update',
+            'brands' => $brands
+        ));
         
     }
 
@@ -111,8 +130,11 @@ class MaterialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return 'FUNCTION UPDATE'; 
-        
+
+        echo '<pre>';
+            var_dump('on est dans update');
+        echo '</pre>';
+        exit('END');
     }
 
     // ==========================================================================================================================

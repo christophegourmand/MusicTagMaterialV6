@@ -6,11 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Brand extends Model
 {
+
+    // here not obliged to declare the table name, as Laravel will search entity 'Brand' in table 'brands' with 's' automatically.
+
     /**
-     * Get the tags attributed to that material
+     * Get the materials attributed to that brand
      */
     public function materials()
     {
-        return $this->hasMany('App\MaterialBrandConnection');
+        return $this->hasMany('App\Material');
     }
+
 }

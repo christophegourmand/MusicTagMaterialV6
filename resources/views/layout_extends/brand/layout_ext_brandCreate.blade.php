@@ -17,17 +17,6 @@
         @csrf
         <!-- TODO : ICI AJOUTER CHAMPS 'MARQUE/FABRICANT', Attention, on doit pouvoir en choisir plusieurs -->
 
-        <div class="form-group row">
-            <label for="brand_name" class="col-md-4 col-form-label text-md-right">{{ __('Name de la marque*') }}</label>
-            <div class="col-md-6">
-                <input id="brand_name" type="text" class="form-control" name="brand_name" value="{{ old('brand_name') }}" required autofocus>
-                @if ($errors->has('brand_name'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('brand_name') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
 
         <div class="form-group row">
             <p class="col-md-4 col-form-label text-md-right">Logo de la marque</p>
@@ -43,6 +32,18 @@
                     @endif
                     <label class="custom-file-label" for="brand_photo">Ajouter un image</label>
                 </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="brand_name" class="col-md-4 col-form-label text-md-right">{{ __('Name de la marque*') }}</label>
+            <div class="col-md-6">
+                <input id="brand_name" type="text" class="form-control" name="brand_name" value="{{ old('brand_name') }}" required autofocus>
+                @if ($errors->has('brand_name'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('brand_name') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
 
