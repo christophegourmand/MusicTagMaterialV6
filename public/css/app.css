@@ -10689,8 +10689,16 @@ a.text-dark:focus {
   background-color: #FFB100 !important;
 }
 
+.border-brownYellow {
+  border: 1px solid #C7A85F !important;
+}
+
 .txt-brownLight {
   color: #968662 !important;
+}
+
+.text-brownYellow {
+  color: #C7A85F !important;
 }
 
 .txt-grey {

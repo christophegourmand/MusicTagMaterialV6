@@ -13,24 +13,26 @@
 <div class="container-fluid">
     <div class="row">
         <!-- ========================================= TAGS ================================== -->
-        <div class="col-md-2 border border-light rounded"> ici les tags</div>
+        <div class="col-lg-2 pt-4 pl-2 border border-light rounded">
+            <h2>Tags</h2>
+        </div>
         <!-- ========================================= MATERIAL ================================== -->
-        <div class="col-md-8 border border-light rounded p-4">
+        <div class="col-lg-8 p-4 border border-light rounded">
             
             <div class="row text-white">
-                <div class="col-md-8">
-                    <div class="col-md-7 bg-danger">
+                <div class="col-lg-8 p-0">
+                    <div class="col-lg-7 bg-danger">
                         <h3>
                             {{$materialToShow->brand->name}}
                         </h3>
                     </div>
-                    <div class="col-md-12 p-0">
+                    <div class="col-lg-12 p-0">
                         <h3>
                             {{$materialToShow->productmodel}}
                         </h3>
                     </div>
                 </div>
-                <div class="col-md-4 text-right">
+                <div class="col-lg-4 text-right">
                     <div class="">
                         <h3>Ville</h3>
                     </div>
@@ -41,23 +43,25 @@
             </div>
             
             <div class="row">
-                <div class="col-md-7">
-                <img src="https://via.placeholder.com/400" alt="">
-<!--                
-                    <div class="carousel slide">
+                <div class="col-lg-6 p-0 border-brownYellow">
+                    <img src="{{asset('storage/img/material/Gibson_sg-standard_01.jpg')}}" alt="Photo du produit">
+               
+                    
+                    <!-- <div class="carousel slide">
                         <ol class="carousel-indicators">
                             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="..." alt="First slide">
+                                <img class="d-block w-100" src="{{asset('storage/img/material/Gibson_sg-standard_01.jpg')}}" alt="First slide">
                             </div>
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="..." alt="second slide">
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="{{asset('storage/img/material/Gibson_sg-standard_02.jpg')}}" alt="second slide">
                             </div>
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="..." alt="third slide">
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="{{asset('storage/img/material/Gibson_sg-standard_03.jpg')}}" alt="third slide">
                             </div>
                         </div>
                         
@@ -69,18 +73,18 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
-                    </div>
--->
+                    </div> -->
+
                 </div>
-                <div class="col-md-5">
+                <div class="col-lg-5 pt-3 border-brownYellow bg-brownDarkLeather text-brownYellow">
                     {{$materialToShow->description}}
                 </div>
             </div>
         </div>
         
         <!-- ========================================= TUTOS ================================== -->
-        <div class="col-md-2 border border-light rounded"> 
-            ici les tutos
+        <div class="col-lg-2 pt-4 pl-2 border border-light rounded"> 
+            <h2>Tutos Liés</h2>
         </div>
     </div>
 </div>
@@ -88,4 +92,7 @@
 @endsection
 
 @section('layout_block_customJavascripts')
+    $('.carousel').carousel({
+    interval: 1000
+    })
 @endsection

@@ -102,6 +102,23 @@
             </div>
         </div>
 
+        <div class="form-group row">
+            <p class="col-md-4 col-form-label text-md-right">Logo de la marque</p>
+
+            <div class="col-md-6">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="brand_photo" name="brand_photo" >
+
+                    @if ($errors->has('brand_photo'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('brand_photo') }}</strong>
+                        </span>
+                    @endif
+                    <label class="custom-file-label" for="brand_photo">Ajouter un image</label>
+                </div>
+            </div>
+        </div>
+
         <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
                 <button type="submit" class="btn btn-danger">
