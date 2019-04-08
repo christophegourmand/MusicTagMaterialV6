@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // so we can use the middlware and check if user is logged.
 use App\Material;
 use App\Brand;
+use App\Photo;
+use App\Audio;
+use App\Video;
 
 class MaterialController extends Controller
 {
@@ -68,14 +71,17 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        // validation of forms fields : 
+        $userIdFromAuth = auth()->user()->id;
+        // -------------------------------------------------------------------------------------
+        // validation of forms fields
         $this->validate($request, [
             'material_brand_id' => 'required',
             'material_productmodel' => 'required',
             'material_price' => 'required'
             // todo: here put 'photofile' => 'image|'
         ]);
-    
+            
+        // -------------------------------------------------------------------------------------
         // creation of 'material' instance, then save informations form the request into a new Material tuple in database
         $material = new Material;
         $material->brand_id = $request->input('material_brand_id');
@@ -83,9 +89,34 @@ class MaterialController extends Controller
         $material->builtyear = $request->input('material_builtyear');
         $material->description = $request->input('material_description');
         $material->price = $request->input('material_price');
-        $material->user_id = auth()->user()->id;
-
+        $material->user_id = auth()->user()->id; //todo remplacer plus tard par $userIdFromAuth
         $material->save();
+            
+        // -------------------------------------------------------------------------------------
+        if(! is_null($request->file('material_photo_1')) )   //? METHODE 1 ...... Youtube Traversy Media
+        {
+            $folderName = 'img/material';
+            $fileUploaded = $request->file('material_photo_1');
+            // $fileNameWithExtension = $request->file('material_photo_1')->getClientOriginalName();
+            // $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
+            $extension = $request->file('material_photo_1')->getClientOriginalExtension();
+            
+            // here i decide to compose a name with u- (for user) _ m- (for material) _ 
+            $fileNameToStore = 'u-'.$userIdFromAuth.'_'.'m-'.$fileName.'.'.$extension;
+            Storage::disk('public')->putFileAs($folderName, $fileUploaded, $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.jpg'; // todo: store a default file in case we don't have images. 
+        }
+
+        // creation of 'brand' instance :
+        $photo1 = new Photo;
+        $photo1->name = $request->input('material_photo_1');
+        
+        $photo1->photo = $fileNameToStore; //? METHODE 1 ...... Youtube Traversy Media
+
+        $photo1->save();
+
+        // -------------------------------------------------------------------------------------
 
         // display the edited Material 's page : 
         return redirect()->route('materials.show', $material->id);

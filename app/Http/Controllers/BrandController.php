@@ -76,7 +76,7 @@ class BrandController extends Controller
 
 
             // get filename with the extension: 
-            $fileNameWithExtension = $request->file('brand_photo')->getClientOriginalName(); //! dois-je ajouter la dernier fonction ?
+            $fileNameWithExtension = $request->file('brand_photo')->getClientOriginalName();
             //get just filename:
             $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
             // get jsut extension

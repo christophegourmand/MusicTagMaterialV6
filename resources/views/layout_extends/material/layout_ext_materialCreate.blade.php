@@ -103,18 +103,62 @@
         </div>
 
         <div class="form-group row">
-            <p class="col-md-4 col-form-label text-md-right">Logo de la marque</p>
-
+            <p class="col-md-4 col-form-label text-md-right">Photo 1</p>
             <div class="col-md-6">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="brand_photo" name="brand_photo" >
+                    <input type="file" class="custom-file-input" id="material_photo_1" name="material_photo_1" >
 
-                    @if ($errors->has('brand_photo'))
+                    @if ($errors->has('material_photo_1'))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('brand_photo') }}</strong>
+                            <strong>{{ $errors->first('material_photo_1') }}</strong>
                         </span>
                     @endif
-                    <label class="custom-file-label" for="brand_photo">Ajouter un image</label>
+                    <label class="custom-file-label" for="material_photo_1">Ajouter une image</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <p class="col-md-4 col-form-label text-md-right">Photo 2</p>
+            <div class="col-md-6">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="material_photo_2" name="material_photo_2" >
+
+                    @if ($errors->has('material_photo_2'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('material_photo_2') }}</strong>
+                        </span>
+                    @endif
+                    <label class="custom-file-label" for="material_photo_2">Ajouter une image</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <p class="col-md-4 col-form-label text-md-right">Photo 3</p>
+            <div class="col-md-6">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="material_photo_3" name="material_photo_3" >
+
+                    @if ($errors->has('material_photo_3'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('material_photo_3') }}</strong>
+                        </span>
+                    @endif
+                    <label class="custom-file-label" for="material_photo_3">Ajouter une image</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <p class="col-md-4 col-form-label text-md-right">Photo 4</p>
+            <div class="col-md-6">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="material_photo_4" name="material_photo_4" >
+
+                    @if ($errors->has('material_photo_4'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('material_photo_4') }}</strong>
+                        </span>
+                    @endif
+                    <label class="custom-file-label" for="material_photo_4">Ajouter une image</label>
                 </div>
             </div>
         </div>
