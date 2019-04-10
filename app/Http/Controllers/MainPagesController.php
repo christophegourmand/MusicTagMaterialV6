@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class MainPagesController extends Controller
 {
@@ -38,9 +39,14 @@ class MainPagesController extends Controller
     // ========================== VERS PROFILE ===============================
     public function displayProfile()
     {
-        // traitement
+        // get the user id from Laravel Authentification
+        $userIdFromAuth = auth()->user()->id;
+        // find a user in database having that id 
+        $user = \App\User::find($userIdFromAuth);
+
         return view('layout_extends.user.layout_ext_profile', array(
-            'title' => 'bienvenue sur la page PROFILE'
+            'title' => 'MTM - Profile',
+            'user' => $user
         ));
     }
 
@@ -49,7 +55,7 @@ class MainPagesController extends Controller
     {
         // traitement
         return view('layout_extends.security.layout_ext_login', array(
-            'title' => 'bienvenue sur la page LOGIN'
+            'title' => 'MTM - Login'
         ));
     }
 

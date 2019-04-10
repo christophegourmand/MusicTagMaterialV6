@@ -34,7 +34,7 @@
     @include('layout_includes.layout_incl_scripts')
 
     <!-- ici les scripts custom, chaque twig écrasera avec ses propres scripts custom       -->
-    @yield('block layout_block_customJavascripts')
+    @yield('layout_block_customJavascripts')
     
 </body>
 
