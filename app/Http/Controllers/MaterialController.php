@@ -155,7 +155,6 @@ class MaterialController extends Controller
             'submitActionRoute' => route('materials.update', $id),
             'submitButtonName' => 'Valider les changements'
         ));
-        
     }
 
     /**

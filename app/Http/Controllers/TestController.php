@@ -27,9 +27,9 @@ class TestController extends Controller
                         return $route->uri();
                     }
                 );
-
+        
         echo '<pre>';
-            var_dump($routes);
+            print_r($routes);
         echo '</pre>';
         exit('END');
     }

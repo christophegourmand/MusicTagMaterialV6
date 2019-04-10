@@ -22,10 +22,6 @@
 
     </header>
 
-    <div class="container my-3">
-        Anciennement FOS zone
-    </div>
-
     <div class="container-fluid">
         @yield('layout_block_body')
     </div>

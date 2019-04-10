@@ -18,7 +18,6 @@ Route::get('/welcome', function () {
 
 // ! ============================================ 
 
-
 //? mes routes:
 
 Route::get('/', 'MainPagesController@displayHome')->name('page_home'); //* OK
