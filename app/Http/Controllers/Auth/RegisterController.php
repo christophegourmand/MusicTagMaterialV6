@@ -67,6 +67,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // Get a collection of countries from database:
+        // $countries = \App\Country::all()->sortBy('name');
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -74,7 +77,10 @@ class RegisterController extends Controller
             'lastname' => $data['lastname'],
             'firstname' => $data['firstname'],
             'phone' => $data['phone'],
-            'avatar' => $data['avatar']
+            'avatar' => $data['avatar'],
+            // 'countries' => $countries
+
+            // todo ici essayer d'intégrer les données adresse, ville et pays dans pour les stocker dans la database.
         ]);
     }
 }

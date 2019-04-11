@@ -26,6 +26,9 @@ class CreateVideosTable extends Migration
                     ->references('id')
                     ->on('materials')
                     ->onDelete('cascade');
+
+            Schema::enableForeignKeyConstraints();
+                    
         });
     }
 

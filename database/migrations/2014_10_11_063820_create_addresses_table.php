@@ -14,7 +14,7 @@ class CreateAddressesTable extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->timestamps();
             $table->string('firstline', 50);
             $table->string('secondline', 50)->nullable();
@@ -25,7 +25,9 @@ class CreateAddressesTable extends Migration
             $table->foreign('city_id')
                     ->references('id')
                     ->on('cities')
-                    ->onDelete('cascade'); // todo try to put 'restr': means it will delete in cascade only if no cities tuples attached to a user.
+                    ->onDelete('restrict'); // todo try to put 'restr': means it will delete in cascade only if no cities tuples attached to a user.
+
+            Schema::enableForeignKeyConstraints();
         });
     }
 

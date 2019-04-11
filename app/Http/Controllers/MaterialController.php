@@ -42,6 +42,7 @@ class MaterialController extends Controller
      */
     public function create()
     {
+        //todo plus tard renommer en createForm() ou showCreateForm()
         // Get a collection of brands from database:
         $brands = \App\Brand::all()->sortBy('name');
         $categories = \App\Category::all();//->sortBy('name');
