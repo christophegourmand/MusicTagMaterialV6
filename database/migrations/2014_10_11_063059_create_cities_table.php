@@ -21,7 +21,7 @@ class CreateCitiesTable extends Migration
 
             // Here I set the foreign key for relation :
             // (1,1) Country reference (0,N) cities
-            $table->unsignedInteger('country_id');
+            $table->unsignedInteger('country_id')->nullable();
             $table->foreign('country_id')
                     ->references('id')
                     ->on('countries')

@@ -36,6 +36,8 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
+    // ==========================================================================================================================
+
     /**
      * Create a new controller instance.
      *
@@ -45,6 +47,10 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+
+    // ==========================================================================================================================
+    // ==========================================================================================================================
+    // ==========================================================================================================================
 
     /**
      * Get a validator for an incoming registration request.
@@ -62,16 +68,18 @@ class RegisterController extends Controller
             // --- infos public ---
             'name' => ['required', 'string', 'max:50', 'unique:users'],
             'avatar' => ['string', 'max:191'],
-            'city' => ['required','string', 'max:100'],
-            'postalcode' => ['string', 'max:10'],
-            'country' => ['string', 'max:45'],
+            // 'city' => ['required','string', 'max:100'],
+            // 'zipcode' => ['string', 'max:10'],
+            // 'country' => ['string', 'max:45'],
+
             // --- infos public ---
-            'firstname' => ['required', 'string', 'max:50'],
-            'lastname' => ['required', 'string', 'max:50'],
-            'phone' => ['string', 'max:20'],
-            'street' => ['required','string', 'max:50']
+            // 'firstname' => ['required', 'string', 'max:50'],
+            // 'lastname' => ['required', 'string', 'max:50'],
+            // 'phone' => ['string', 'max:20'],
+            // 'street' => ['required','string', 'max:50']
         ]);
     }
+// ==========================================================================================================================
 
     /**
      * Create a new user instance after a valid registration.
@@ -84,61 +92,62 @@ class RegisterController extends Controller
         // Get a collection of countries from database:
         // $countries = \App\Country::all()->sortBy('name');
         
-/* METHOD 2 :  didnt work, i just tried 
-        $country = Country::create([
-        'name' => $data['country']
-        ]);
+        //? METHOD 2 :  didnt work, i just tried 
+        /* 
+                $country = Country::create([
+                'name' => $data['country']
+                ]);
 
-        $city = City::create([
-        'name' => $data['city']
-        ]);
- */
+                $city = City::create([
+                'name' => $data['city']
+                ]);
+        */
 
-/*  METHOD 1:  worked before new fields, but i'
+        //? METHOD 1:  worked before new fields, but i'
         return User::create([
             // dd($data);
-            'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'lastname' => $data['lastname'],
-            'firstname' => $data['firstname'],
-            'phone' => $data['phone'],
+            'name' => $data['name'],
             'avatar' => $data['avatar']
+            // 'lastname' => $data['lastname'],
+            // 'firstname' => $data['firstname'],
+            // 'phone' => $data['phone'],
             // 'countries' => $countries
             // todo ici essayer d'intégrer les données adresse, ville et pays dans pour les stocker dans la database.
-            ]);
-*/
-
-    // METHOD 3 :
-
-    $country = new Country;
-    $country->name = $request->input('country');
-    $country->save();
+        ]);
 
 
-    $city = new City;
-    $city->name = $request->input('city');
-    $city->country_id = $country->id;
-    $city->save();
-    
-    $address = new Address;
-    $address->street = $request->input('street');
-    $address->city_id = $city->id;
-    $address->save();
+        //? METHOD 3 :
+        /*
+            $country = new Country;
+            $country->name = $request->input('country');
+            $country->save();
 
-    $user = new User;
-    $user->email = $request->input('email');
-    $user->password = $request->input('password');
-    $user->name = $request->input('name');
-    $user->avatar = $request->input('avatar');
-    $user->firstname = $request->input('firstname');
-    $user->lastname = $request->input('lastname');
-    $user->phone = $request->input('phone');
 
-    $user->address_id = $address->id;
-    $user->save();
-    
-    return $user;
+            $city = new City;
+            $city->name = $request->input('city');
+            $city->country_id = $country->id;
+            $city->save();
+            
+            $address = new Address;
+            $address->street = $request->input('street');
+            $address->city_id = $city->id;
+            $address->save();
 
+            $user = new User;
+            $user->email = $request->input('email');
+            $user->password = $request->input('password');
+            $user->name = $request->input('name');
+            $user->avatar = $request->input('avatar');
+            $user->firstname = $request->input('firstname');
+            $user->lastname = $request->input('lastname');
+            $user->phone = $request->input('phone');
+
+            $user->address_id = $address->id;
+            $user->save();
+            
+            return $user;
+        */
     }
 }

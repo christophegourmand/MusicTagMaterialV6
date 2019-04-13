@@ -50,4 +50,13 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Material');
     }
+
+    /**
+     * Get the address for that user.
+     */
+    public function address()
+    {
+        return $this->belongsTo('App\Address');
+    }
+
 }

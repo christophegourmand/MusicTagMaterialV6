@@ -21,19 +21,19 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('firstname', 50);
-            $table->string('lastname', 50);
+            $table->string('firstname', 50)->nullable();
+            $table->string('lastname', 50)->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('avatar')->nullable();
             // + adresse_id clé étrangère
 
             // Here I set the foreign key for relation :
-            // (1,1) Addresses reference (1,N) users
-            $table->unsignedInteger('address_id');
+            // (0,1) Addresses reference (1,N) users
+            $table->unsignedInteger('address_id')->nullable();
             $table->foreign('address_id')
                     ->references('id')
                     ->on('addresses')
-                    ->onDelete('restrict'); // it was 'set null', i decided 'restrict' as now the address is required/mandatory.
+                    ->onDelete('set null');
 
             Schema::enableForeignKeyConstraints();
         });

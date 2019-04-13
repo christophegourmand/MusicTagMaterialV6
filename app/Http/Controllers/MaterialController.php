@@ -72,16 +72,17 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        $userIdFromAuth = auth()->user()->id;
-        // -------------------------------------------------------------------------------------
         // validation of forms fields
         $this->validate($request, [
             'material_brand_id' => 'required',
             'material_productmodel' => 'required',
             'material_price' => 'required'
             // todo: here put 'photofile' => 'image|'
-        ]);
+            ]);
             
+        $userIdFromAuth = auth()->user()->id;
+        // -------------------------------------------------------------------------------------
+    
         // -------------------------------------------------------------------------------------
         // creation of 'material' instance, then save informations form the request into a new Material tuple in database
         $material = new Material;

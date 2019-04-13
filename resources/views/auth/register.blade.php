@@ -2,15 +2,14 @@
 
 @section('content')
 <div class="container-fluid">
-    <h1>Votre Compte</h1>
-
-    <p>ici insérer formulaire d'inscription en html au lieu de form_widget</p>
+    <h1>Creation du compte</h1>
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
-        <div class="d-sm-flex flex-column flex-md-row justify-content-arround">
+        <div class="row">
             <!-- #####################################################  -->
-            <div class="col border border-light rounded">
+            <div class="col"></div>
+            <div class="col-md-4 m-3 m-md-4 border border-light rounded">
                 <h2>Infos de Connexion</h2>
                 <!-- .....................  -->
                 <div class="form-group">
@@ -44,16 +43,17 @@
                     </div>
                 </div>
                 <!-- .....................  -->
-                
-
-            </div>
+            </div> <!-- end infos connexions-->
             <!-- #####################################################  -->
+            <div class="col"></div>
+
             
-            <div class="col border border-light rounded">
+            <div class="col-md-4 m-3 m-md-4 border border-light rounded">
                 <h2>Infos publique</h2>
 
-                <div class="row">
-                    <div class="form-group col-6">
+                <div class="d-flex flex-column flex-md-row justify-content-md-around align-items-md-center">
+
+                    <div class="form-group">
                         <label for="name" class="">{{ __('Pseudo*') }}</label>
                         <div class="">
                             <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required>
@@ -64,9 +64,8 @@
                             @endif
                         </div>
                     </div>
-    
                     <!-- .....................  -->
-                    <div class="col-6">
+                    <div class="">
                         <div class="avatar-wrapper">
                             <img class="profile-pic" src="" />
                             <div class="upload-button">
@@ -75,108 +74,17 @@
                             <input class="file-upload" type="file" accept="image/*" id="avatar" name="avatar"/>
                             <label class="custom-file-label" for="avatar">Ajouter un image</label>
                             @if ($errors->has('avatar'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('avatar') }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('avatar') }}</strong>
+                            </span>
                             @endif
                         </div>
                     </div>
-                </div>
-
-                <!-- .....................  -->
-                <div class="form-group">
-                    <label for="city" class="">{{ __('Ville*') }}</label>
-                    <div class="">
-                        <input id="city" type="text" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" value="{{ old('city') }}" required>
-                        @if ($errors->has('city'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('city') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
-                <!-- .....................  -->
-                <div class="form-group">
-                <label for="postalcode" class="">{{ __('Codepostal*') }}</label>
-                    <div class="">
-                        <input id="postalcode" type="text" class="form-control{{ $errors->has('postalcode') ? ' is-invalid' : '' }}" name="postalcode" value="{{ old('postalcode') }}" required>
-                        @if ($errors->has('postalcode'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('postalcode') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-                <!-- .....................  -->
-                <div class="form-group">
-                    <label for="country" class="">{{ __('Pays*') }}</label>
-                    <div class="">
-                        <input id="country" type="text" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ old('country') }}" required>
-                        @if ($errors->has('country'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('country') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-                <!-- .....................  -->
-            </div>
-            
-            <!-- #####################################################  -->
-            <div class="col border border-light rounded">
-                <h2>Infos affichées lors de la vente</h2>
-
-                <!-- .....................  -->
-                <div class="form-group">
-                    <label for="firstname" class="">{{ __('Prénom*') }}</label>
-                    <div class="">
-                        <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autofocus>
-                        @if ($errors->has('firstname'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('firstname') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-                <!-- .....................  -->
-                <div class="form-group">
-                    <label for="lastname" class="">{{ __('Nom de famille*') }}</label>
-                    <div class="">
-                        <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus>
-                        @if ($errors->has('lastname'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('lastname') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
-                
-                <!-- .....................  -->
-                <div class="form-group">
-                    <label for="phone" class="">{{ __('Téléphone') }}</label>
-                    <div class="">
-                        <input id="phone" type="tel" class="form-control" name="phone" value="{{ old('phone') }}" autofocus>
-                        @if ($errors->has('phone'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('phone') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-                <!-- .....................  -->
-                <div class="form-group">
-                    <label for="street" class="">{{ __('Adresse*') }}</label>
-                    <div class="">
-                        <input id="street" type="text" class="form-control{{ $errors->has('street') ? ' is-invalid' : '' }}" name="street" value="{{ old('street') }}" required>
-                        @if ($errors->has('street'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('street') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
-                <!-- .....................  -->
-            </div>
+                    <!-- .....................  -->
+                </div> <!-- fin flex -->
+                <!-- ================================================================ -->
+            </div> <!-- fin infos publiques -->
+            <div class="col"></div>
         </div>
         
         <input class="btn btn-danger w-100 mt-3" type="submit" value="Enregistrer">

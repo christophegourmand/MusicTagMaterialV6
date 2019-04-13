@@ -13,4 +13,12 @@ class Address extends Model
     {
         return $this->belongsTo('App\City');
     }
+
+    /**
+     * Get the users.
+     */
+    public function users()
+    {
+        return $this->hasMany('App\User');
+    }
 }

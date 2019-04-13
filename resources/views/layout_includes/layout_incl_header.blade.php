@@ -66,7 +66,7 @@
 
  <nav class="navbar navbar-expand-md navbar-dark bg-brownDarkLeather">
             <div class="container-fluid">
-                <a class="navbar-brand txt-brownLight" href="{{ url('/') }}"> MusicTagMaterial</a>
+                <a class="navbar-brand txt-brownLight" href="{{ route('page_main') }}"> MusicTagMaterial</a>
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -104,11 +104,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Se connecter') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Creer un compte') }}</a>
                                 </li>
                             @endif
                         @else
@@ -123,10 +123,14 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                                    <!-- that form is send on POST /logout  with a csrf to be sure no one else sign you out -->
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        {{ __('Mon espace') }}
+                                    </a>
                                 </div>
                             </li>
                         @endguest

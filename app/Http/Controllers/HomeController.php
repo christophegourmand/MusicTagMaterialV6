@@ -25,6 +25,31 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // get the user id from Laravel Authentification
+        $userIdFromAuth = auth()->user()->id;
+        // find a user in database having that id 
+        $user = \App\User::find($userIdFromAuth);
+
+        return view('home', array(
+            'title' => 'MTM - Mon espace',
+            'user' => $user
+         ));
     }
+
+    //! il faudra peut etre la virer, car la fonction au dessus fait la meme chose : 
+    // ========================== VERS PROFILE ===============================
+/*
+    public function displayProfile()
+    {
+        // get the user id from Laravel Authentification
+        $userIdFromAuth = auth()->user()->id;
+        // find a user in database having that id 
+        $user = \App\User::find($userIdFromAuth);
+
+        return view('layout_extends.user.layout_ext_profile', array(
+            'title' => 'MTM - Profile',
+            'user' => $user
+        ));
+    }
+*/
 }

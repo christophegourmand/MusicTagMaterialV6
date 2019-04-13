@@ -15,40 +15,18 @@ class MainPagesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
 
     // =========================== VERS HOME =================================
-    public function displayHome()
+    public function displayMain()
     {
         // traitement
-        return view('layout_extends.layout_ext_home', array(
-            'title' => 'bienvenue sur la page HOME'
+        return view('layout_extends.layout_ext_main', array(
+            'title' => 'MusicTagMaterial - Accueil'
         ));
     }
     
-    // ========================= VERS INSCRIPTION ============================
-    public function displayRegistration()
-    {
-        // traitement
-        return view('layout_extends.security.layout_ext_registration', array(
-            'title' => 'bienvenue sur la page REGISTRATION'
-        ));
-    }
-    
-    // ========================== VERS PROFILE ===============================
-    public function displayProfile()
-    {
-        // get the user id from Laravel Authentification
-        $userIdFromAuth = auth()->user()->id;
-        // find a user in database having that id 
-        $user = \App\User::find($userIdFromAuth);
-
-        return view('layout_extends.user.layout_ext_profile', array(
-            'title' => 'MTM - Profile',
-            'user' => $user
-        ));
-    }
 
     // ========================== VERS MONCOMPTE ===============================
     public function displayLogin()
