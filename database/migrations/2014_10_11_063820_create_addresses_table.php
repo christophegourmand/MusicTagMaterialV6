@@ -16,8 +16,8 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('firstline', 50);
-            $table->string('secondline', 50)->nullable();
+            $table->string('street', 50);
+            //$table->string('secondline', 50)->nullable(); // Finally removed, i think useless.
             
             // Here I set the foreign key for relation :
             // (1,1) City reference (0,N) addresses

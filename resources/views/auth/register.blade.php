@@ -83,12 +83,11 @@
                     </div>
                 </div>
 
-
                 <!-- .....................  -->
                 <div class="form-group">
-                    <label for="city" class="">{{ __('Ville') }}</label>
+                    <label for="city" class="">{{ __('Ville*') }}</label>
                     <div class="">
-                        <input id="city" type="text" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" value="{{ old('city') }}">
+                        <input id="city" type="text" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" value="{{ old('city') }}" required>
                         @if ($errors->has('city'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('city') }}</strong>
@@ -98,9 +97,9 @@
                 </div>
                 <!-- .....................  -->
                 <div class="form-group">
-                <label for="postalcode" class="">{{ __('Codepostal') }}</label>
+                <label for="postalcode" class="">{{ __('Codepostal*') }}</label>
                     <div class="">
-                        <input id="postalcode" type="text" class="form-control{{ $errors->has('postalcode') ? ' is-invalid' : '' }}" name="postalcode" value="{{ old('postalcode') }}">
+                        <input id="postalcode" type="text" class="form-control{{ $errors->has('postalcode') ? ' is-invalid' : '' }}" name="postalcode" value="{{ old('postalcode') }}" required>
                         @if ($errors->has('postalcode'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('postalcode') }}</strong>
@@ -110,15 +109,15 @@
                 </div>
                 <!-- .....................  -->
                 <div class="form-group">
-                <label for="country" class="">{{ __('Pays*') }}</label>
-                <div class="">
-                    <input id="country" type="text" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ old('country') }}">
-                    @if ($errors->has('country'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('country') }}</strong>
-                        </span>
-                    @endif
-                </div>
+                    <label for="country" class="">{{ __('Pays*') }}</label>
+                    <div class="">
+                        <input id="country" type="text" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ old('country') }}" required>
+                        @if ($errors->has('country'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('country') }}</strong>
+                            </span>
+                        @endif
+                    </div>
                 </div>
                 <!-- .....................  -->
             </div>
@@ -126,18 +125,8 @@
             <!-- #####################################################  -->
             <div class="col border border-light rounded">
                 <h2>Infos affichées lors de la vente</h2>
-                <div class="form-group">
-                    <label for="lastname" class="">{{ __('Nom de famille*') }}</label>
-                    <div class="">
-                        <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus>
-                        @if ($errors->has('lastname'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('lastname') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
 
+                <!-- .....................  -->
                 <div class="form-group">
                     <label for="firstname" class="">{{ __('Prénom*') }}</label>
                     <div class="">
@@ -149,7 +138,20 @@
                         @endif
                     </div>
                 </div>
-
+                <!-- .....................  -->
+                <div class="form-group">
+                    <label for="lastname" class="">{{ __('Nom de famille*') }}</label>
+                    <div class="">
+                        <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus>
+                        @if ($errors->has('lastname'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('lastname') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+                
+                <!-- .....................  -->
                 <div class="form-group">
                     <label for="phone" class="">{{ __('Téléphone') }}</label>
                     <div class="">
@@ -161,6 +163,19 @@
                         @endif
                     </div>
                 </div>
+                <!-- .....................  -->
+                <div class="form-group">
+                    <label for="street" class="">{{ __('Adresse*') }}</label>
+                    <div class="">
+                        <input id="street" type="text" class="form-control{{ $errors->has('street') ? ' is-invalid' : '' }}" name="street" value="{{ old('street') }}" required>
+                        @if ($errors->has('street'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('street') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+                <!-- .....................  -->
             </div>
         </div>
         

@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name', 50);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -28,12 +28,12 @@ class CreateUsersTable extends Migration
             // + adresse_id clé étrangère
 
             // Here I set the foreign key for relation :
-            // (0,1) Addresses reference (1,N) users
-            $table->unsignedInteger('address_id')->nullable();
+            // (1,1) Addresses reference (1,N) users
+            $table->unsignedInteger('address_id');
             $table->foreign('address_id')
                     ->references('id')
                     ->on('addresses')
-                    ->onDelete('set null');
+                    ->onDelete('restrict'); // it was 'set null', i decided 'restrict' as now the address is required/mandatory.
 
             Schema::enableForeignKeyConstraints();
         });
