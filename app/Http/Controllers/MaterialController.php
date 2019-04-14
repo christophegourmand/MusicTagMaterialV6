@@ -47,6 +47,7 @@ class MaterialController extends Controller
         $brands = \App\Brand::all()->sortBy('name');
         $categories = \App\Category::all();//->sortBy('name');
         $materialToEdit = new Material;
+        $brandToEdit = new Brand;
 
         // TODO : ici ajouter les infos du material à vide
      
@@ -56,6 +57,7 @@ class MaterialController extends Controller
             'brands' => $brands,
             'categories' => $categories,
             'materialToEdit' => $materialToEdit,
+            'brandToEdit' => $brandToEdit,
             'submitActionMethod' => 'POST',
             'submitActionRoute' => route('materials.store'),
             'submitButtonName' => 'Valider les changements'

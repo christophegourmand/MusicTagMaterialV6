@@ -39,10 +39,6 @@ class UserPagesController extends Controller
      */
     public function displaySellerForm()
     {   
-
-        
-        
-        
         // get connected user id
         $userIdFromAuth = auth()->user()->id; //int
         
@@ -63,7 +59,6 @@ class UserPagesController extends Controller
             $user->address->city->zipcode
             */
         
-        
             // here we prepare the fields (1) with the values if they exist (OR) without empty string if doesnt exist
         
         /*
@@ -75,7 +70,6 @@ class UserPagesController extends Controller
         $user->address()->name; // besoin de ->get()->name
         */
 
-
         return view('layout_extends.user.layout_ext_formSellerInfos', array(
             'title' => 'Informations necessaires pour vendre du materiel',
             'submitActionMethod' => 'POST',
@@ -86,9 +80,7 @@ class UserPagesController extends Controller
         
     }
     
-
     // ===================================================================================================
-
 
     /**
      * Store information required for a user to sell
@@ -119,7 +111,6 @@ class UserPagesController extends Controller
 
         // find a user in database having that id 
         $user = \App\User::find($userIdFromAuth);
-    
         
         // -------------------------------------------------
         // saving fields from the form
@@ -156,7 +147,6 @@ class UserPagesController extends Controller
         // associate address with the user:
                 $user->address_id = $address->id;
                 $user->save();
-
 
             // $address->users()->associate($user); // doesnt works 
             // OR perhaps it could be like that:

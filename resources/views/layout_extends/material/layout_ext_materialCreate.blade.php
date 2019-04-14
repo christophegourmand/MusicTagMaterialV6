@@ -35,10 +35,11 @@
                 @endif
             </div>
         </div>
-
+        <!-- ==================== ENLEVER CE MENU DEROULANT POUR ENTRER LA MARQUE ================ -->
         <div class="form-group row">
-            <label for="material_brand_id" class="col-md-4 col-form-label text-md-right">{{ __('marque*') }}</label>
-            <div class="col-md-6">    
+            <label for="material_brand_id" class="col-md-4 col-form-label text-md-right">{{ __('marque version déroulant à virer*') }}</label>
+            <div class="col-md-6">
+            <!-- NE PAS METTRE UN MENU DEROULANT, METTRE PLUTOT UN TEXT INPUT -->
                 <select id="material_brand_id" class="form-control" name="material_brand_id">
                     @foreach($brands as $brand)
                         <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -52,9 +53,23 @@
                 @endif
             </div>
         </div>
+        <!-- ========= AJOUTER CET INPUT DE MARQUE AVEC RECUPERATION DE LA MARQUE PRECEDENTE SI EXISTE ========== -->
 
         <div class="form-group row">
-            <label for="material_material_productmodel" class="col-md-4 col-form-label text-md-right">{{ __('Modèle/référence du matériel*') }}</label>
+            <label for="material_brand" class="col-md-4 col-form-label text-md-right">{{ __('Marque version input *') }}</label>
+            <div class="col-md-6">
+                <input id="material_brand" type="text" class="form-control" name="material_brand" value="{{--$materialToEdit->brand->name--}}" required autofocus>
+                @if ($errors->has('material_brand'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('material_brand') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="material_productmodel" class="col-md-4 col-form-label text-md-right">{{ __('Modèle/référence du matériel*') }}</label>
             <div class="col-md-6">
                 <input id="material_productmodel" type="text" class="form-control" name="material_productmodel" value="{{$materialToEdit->productmodel}}" required autofocus>
                 @if ($errors->has('material_productmodel'))
