@@ -96,15 +96,37 @@ class UserPagesController extends Controller
         
         // user table informations
                 $user->firstname = $request->input('firstname');
-                $user->lastname = $request->input('lastname');
+                $user->lastname = strtoupper($request->input('lastname'));
                 $user->phone = $request->input('phone');
             
             // country
                 // todo : mettre le nom du pays en capitale
-                $country = new Country;
-                $country->name = strtoupper($request->input('country'));
-                $country->save();
-                
+                //? METHODE 1 : fonctionne, mais duplique les PAYS
+                    // $country = new Country;
+                    // $country->name = strtoupper($request->input('country'));
+                    // $country->save();
+                    
+                //? METHODE 2 : j'essaye autre chose:
+                    // 1 cherche le 'pays' de la request, et rapporte moi le 1er enregistrement
+                        // besoin de mettre dans un try et catch ?
+
+                        // in $country, store the first country in DB with a name correspond the the country from request
+                        $country = Country::where('name',  strtoupper($request->input('country'))  )->first();
+
+                        // if the country from request is null, then create one, store the request country inside, and save.
+                        if ( is_null($country) )
+                        {
+                            $country = new Country;
+                            $country->name = strtoupper($request->input('country'));
+                            $country->save();
+                        }
+
+                    // 2 si tu n'as rien trouve (donc pays rapporte est null), alors 
+                        // instancie un pays.
+                        // stocke le pays de la request dans le pays instancie
+
+                    // 3 si tu as trouve un pays, alors 
+
             // city and zipcode/postalcode :
                 // todo : mettre le nom de la ville en capitale
                 // todo 2 : chercher si la ville existe deja, ne pas la creer
