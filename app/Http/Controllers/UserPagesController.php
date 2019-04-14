@@ -40,11 +40,41 @@ class UserPagesController extends Controller
     public function displaySellerForm()
     {   
 
+        
+        
+        
         // get connected user id
         $userIdFromAuth = auth()->user()->id; //int
-
+        
         // find a user in database having that id 
         $user = \App\User::find($userIdFromAuth);
+        
+        //* si les informations du users ont deja ete saisies, alors va directement sur le formulaire de creation de material:
+        //* se servir de ca :
+            /*
+            $user->name
+            $user->email
+            $user->firstname
+            $user->lastname
+            $user->phone
+            $user->avatar
+            $user->address->street
+            $user->address->city->name
+            $user->address->city->zipcode
+            */
+        
+        
+            // here we prepare the fields (1) with the values if they exist (OR) without empty string if doesnt exist
+        
+        /*
+        $user->firstname;
+        if(isset($user->firstname)){}
+        
+        $user->lastname;
+        $user->phone;
+        $user->address()->name; // besoin de ->get()->name
+        */
+
 
         return view('layout_extends.user.layout_ext_formSellerInfos', array(
             'title' => 'Informations necessaires pour vendre du materiel',
@@ -95,63 +125,43 @@ class UserPagesController extends Controller
         // saving fields from the form
         
         // user table informations
-                $user->firstname = $request->input('firstname');
-                $user->lastname = strtoupper($request->input('lastname'));
-                $user->phone = $request->input('phone');
+            $user->firstname = $request->input('firstname');
+            $user->lastname = strtoupper($request->input('lastname'));
+            $user->phone = $request->input('phone');
             
-            // country
-                // todo : mettre le nom du pays en capitale
-                //? METHODE 1 : fonctionne, mais duplique les PAYS
-                    // $country = new Country;
-                    // $country->name = strtoupper($request->input('country'));
-                    // $country->save();
-                    
-                //? METHODE 2 : j'essaye autre chose:
-                    // 1 cherche le 'pays' de la request, et rapporte moi le 1er enregistrement
-                        // besoin de mettre dans un try et catch ?
+        // Retrieve country by name, or create it if it doesn't exist...
+            $country = \App\Country::firstOrCreate(
+                ['name' =>  strtoupper($request->input('country')) ]
+            );
+            
+        // Retrieve City by 'zipcode', or create it if it doesn't exist...
+            $city = \App\City::firstOrCreate(
+                ['zipcode' =>  strtoupper($request->input('zipcode'))  ], // search if that one already exist
+                
+                [
+                    'name' => strtoupper($request->input('city')), 
+                    'country_id' => $country->id
+                ]
+            );
+                
+        // Retrieve Address by 'street' field, or create it if it doesn't exist...
+            $address = \App\Address::firstOrCreate(
+                ['street' => $request->input('street')  ],
+                
+                [  
+                    'city_id' => $city->id
+                ]
+            );
 
-                        // in $country, store the first country in DB with a name correspond the the country from request
-                        $country = Country::where('name',  strtoupper($request->input('country'))  )->first();
-
-                        // if the country from request is null, then create one, store the request country inside, and save.
-                        if ( is_null($country) )
-                        {
-                            $country = new Country;
-                            $country->name = strtoupper($request->input('country'));
-                            $country->save();
-                        }
-
-                    // 2 si tu n'as rien trouve (donc pays rapporte est null), alors 
-                        // instancie un pays.
-                        // stocke le pays de la request dans le pays instancie
-
-                    // 3 si tu as trouve un pays, alors 
-
-            // city and zipcode/postalcode :
-                // todo : mettre le nom de la ville en capitale
-                // todo 2 : chercher si la ville existe deja, ne pas la creer
-                $city = new City;
-                $city->name = strtoupper( $request->input('city') );
-                $city->zipcode = $request->input('zipcode');
-                $city->country_id = $country->id;
-                $city->save();
-
-            // address
-                $address = new Address;
-                $address->street = $request->input('street');
-                $address->city_id = $city->id; 
-                $address->save();
-
-            // associate addresse with the user:
+        // associate address with the user:
                 $user->address_id = $address->id;
                 $user->save();
 
-            
 
-                // $address->users()->associate($user); // doesnt works 
-                // OR perhaps it could be like that:
-                    // $address->city()->save($city);
-                    // $address->city()->country()->save($country);
+            // $address->users()->associate($user); // doesnt works 
+            // OR perhaps it could be like that:
+                // $address->city()->save($city);
+                // $address->city()->country()->save($country);
 
             /*  EXAMPLE :: 
             $address->productmodel = $request->input('material_productmodel');
@@ -161,35 +171,8 @@ class UserPagesController extends Controller
             $address->user_id = auth()->user()->id; //todo remplacer plus tard par $userIdFromAuth
             $address->save();
             */   
+
+            return redirect()->route('materials.create');
     }
 
-    // ===================================================================================================
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            // email: I chose 70, but Laravel arrives with 255., i still chose 191 for utf8mb4+unique limitation.
-            // --- infos connection ---
-            'email' => ['required', 'string', 'email', 'max:191', 'unique:users'], 
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            // --- infos public ---
-            'name' => ['required', 'string', 'max:50', 'unique:users'],
-            'avatar' => ['string', 'max:191'],
-            // 'city' => ['required','string', 'max:100'],
-            // 'zipcode' => ['string', 'max:10'],
-            // 'country' => ['string', 'max:45'],
-
-            // --- infos public ---
-            // 'firstname' => ['required', 'string', 'max:50'],
-            // 'lastname' => ['required', 'string', 'max:50'],
-            // 'phone' => ['string', 'max:20'],
-            // 'street' => ['required','string', 'max:50']
-        ]);
-    }
 }

@@ -17,7 +17,7 @@ class CreateCitiesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name', 100);
-            $table->string('zipcode', 10)->nullable();
+            $table->string('zipcode', 10);
 
             // Here I set the foreign key for relation :
             // (1,1) Country reference (0,N) cities

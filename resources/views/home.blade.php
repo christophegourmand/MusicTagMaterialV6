@@ -58,15 +58,15 @@
             </div>
             
             <div class="">
-                <p>{{$user->address}}</p>
+                <p>{{$user->address->street}}</p>
             </div>
             
             <div class="">
-                <p>{{$user->city}}</p>
+                <p>{{$user->address->city->name}}</p>
             </div>
             
             <div class="">
-                <p>{{$user->zipcode}}</p>
+                <p>{{$user->address->city->zipcode}}</p>
             </div>
             <!--  
             -->

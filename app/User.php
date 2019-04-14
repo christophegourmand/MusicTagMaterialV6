@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'firstname', 'lastname', 'phone', 'avatar'
+        'name', 'email', 'password', 'firstname', 'lastname', 'phone', 'avatar', 'address_id'
     ];
 
     /* ------------------------------------- 
@@ -24,6 +24,7 @@ class User extends Authenticatable
     $user = new User(Input::all()); 
     -------------------------------------- */
 
+    
     /**
      * The attributes that should be hidden for arrays.
      *
