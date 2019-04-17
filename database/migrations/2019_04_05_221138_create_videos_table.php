@@ -16,7 +16,7 @@ class CreateVideosTable extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('videolink');
+            $table->string('link');
             $table->string('description')->nullable();
 
             // Here I set the foreign key for relation :

@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller; // added by teacher, still works without.
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // so we can use the middlware and check if user is logged.
+//? used to upload the fils (amterials photos)
+use Illuminate\Http\File;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+
 use App\Material;
 use App\Brand;
 use App\Photo;
@@ -29,7 +34,29 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        return 'FUNCTION INDEX'; 
+        $materials = \App\Material::all()->sortByDesc('created_at');
+        
+        // echo '<pre>';
+        //     var_dump($materials);
+        // echo '</pre>';
+        // exit('END');
+
+
+        return view('layout_extends.material.layout_ext_materialIndex', array(
+            'title' => 'MusicTagMaterial - Annonces Recentes',
+            'materials' => $materials,
+            // 'material' => $material,
+            // 'brand' => $brand,
+            // 'user' => $user,
+            // 'city' => $city,
+            // 'photos' => $photos,
+            // 'photo1' => $photo1, //! temporary
+            // 'assetPath' => $assetPath,
+            // 'routeName' => 'materials.update',
+            // 'submitActionRoute' => route('materials.update', $id),
+            // 'submitButtonName' => 'Valider les changements'
+        ));
+
     }
 
     // ==========================================================================================================================
@@ -46,18 +73,21 @@ class MaterialController extends Controller
         // Get a collection of brands from database:
         $brands = \App\Brand::all()->sortBy('name');
         $categories = \App\Category::all();//->sortBy('name');
-        $materialToEdit = new Material;
-        $brandToEdit = new Brand;
+        $material = new Material;
+        $brand = new Brand;
+        // $material->brand_id = $brand->id; // inutile je pense
+        $photo1 = new Photo;
 
         // TODO : ici ajouter les infos du material à vide
      
         return view('layout_extends.material.layout_ext_materialCreate', array(
             'title' => 'bienvenue sur la page MATERIAL CREATE',
             // 'actionAsking' => 'materials.create',
-            'brands' => $brands,
+            'brands' => $brands,       //todo later, try with jQuery to auto-complete after each keydown.
+            'brand' => $brand,
             'categories' => $categories,
-            'materialToEdit' => $materialToEdit,
-            'brandToEdit' => $brandToEdit,
+            'material' => $material,
+            'photo1' => $photo1,
             'submitActionMethod' => 'POST',
             'submitActionRoute' => route('materials.store'),
             'submitButtonName' => 'Valider les changements'
@@ -76,47 +106,58 @@ class MaterialController extends Controller
     {
         // validation of forms fields
         $this->validate($request, [
-            'material_brand_id' => 'required',
             'material_productmodel' => 'required',
-            'material_price' => 'required'
-            // todo: here put 'photofile' => 'image|'
-            ]);
+            'material_price' => 'required',
+            'material_brand' => 'required',
+            'material_photo1_file' => 'image'
+        ]);
             
         $userIdFromAuth = auth()->user()->id;
         // -------------------------------------------------------------------------------------
+        // Retrieve brand by name, or create it if it doesn't exist...
+        $brand = \App\Brand::firstOrCreate(
+            ['name' =>  strtoupper($request->input('material_brand')) ]
+        );
     
         // -------------------------------------------------------------------------------------
         // creation of 'material' instance, then save informations form the request into a new Material tuple in database
         $material = new Material;
-        $material->brand_id = $request->input('material_brand_id');
+        $material->brand_id = $brand->id;
         $material->productmodel = $request->input('material_productmodel');
         $material->builtyear = $request->input('material_builtyear');
         $material->description = $request->input('material_description');
         $material->price = $request->input('material_price');
-        $material->user_id = auth()->user()->id; //todo remplacer plus tard par $userIdFromAuth
+        $material->user_id = $userIdFromAuth;
         $material->save();
             
         // -------------------------------------------------------------------------------------
-        if(! is_null($request->file('material_photo_1')) )   //? METHODE 1 ...... Youtube Traversy Media
-        {
+        // if( !is_null($request->file('material_photo1_file')) )   //? METHODE 1 ...... Youtube Traversy Media
+        // {
             $folderName = 'img/material';
-            $fileUploaded = $request->file('material_photo_1');
-            // $fileNameWithExtension = $request->file('material_photo_1')->getClientOriginalName();
-            // $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
-            $extension = $request->file('material_photo_1')->getClientOriginalExtension();
-            
-            // here i decide to compose a name with u- (for user) _ m- (for material) _ 
-            $fileNameToStore = 'u-'.$userIdFromAuth.'_'.'m-'.$fileName.'.'.$extension;
-            Storage::disk('public')->putFileAs($folderName, $fileUploaded, $fileNameToStore);
-        } else {
-            $fileNameToStore = 'noimage.jpg'; // todo: store a default file in case we don't have images. 
-        }
+            $fileUploaded = $request->file('material_photo1_file');
 
-        // creation of 'brand' instance :
+            // get filename with the extension: 
+            $fileNameWithExtension = $request->file('material_photo1_file')->getClientOriginalName();
+            //get just filename:
+            $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
+            // get just extension
+            $extension = $request->file('material_photo1_file')->getClientOriginalExtension();
+
+            // filename to store: (here i decide to compose a name with u- (for user) _ m- (for material) _ )
+            $fileNameToStore = 'u-'.$userIdFromAuth.'_'.'m-'.$fileName.'.'.$extension;
+            
+            //? upload the file in '\public\storage\' with correct filename 
+            Storage::disk('public')->putFileAs($folderName, $fileUploaded, $fileNameToStore);
+        // } else {
+        //     $fileNameToStore = 'noimage.jpg'; // todo: store a default file in case we don't have images. 
+        // }
+
+        // creation of 'photo' instance :
         $photo1 = new Photo;
-        $photo1->name = $request->input('material_photo_1');
-        
-        $photo1->photo = $fileNameToStore; //? METHODE 1 ...... Youtube Traversy Media
+        // $photo1->file = $request->input('material_photo1_file'); // not correct, I will use the filename prepared earlier instead :
+        $photo1->file = $fileNameToStore; //? METHODE 1 ...... Youtube Traversy Media
+        $photo1->description = $request->input('material_photo1_description');
+        $photo1->material_id = $material->id;
 
         $photo1->save();
 
@@ -137,15 +178,21 @@ class MaterialController extends Controller
      */
     public function show($id)
     {
-        $materialToShow = \App\Material::find($id);
+        $material = \App\Material::find($id);
         
-        // $brand = $materialToShow->brands()->where('brand_id',5);
-        // $materialToShow->brand_id; //? renvoi bien 5
-        $materialToShow->brand->name; //? renvoi bien le nom de la marque
-        // echo '<pre>';
-        // var_dump($materialToShow->brand->name);
-        // echo '</pre>';
-        // exit('END');
+        // $brand = $material->brands()->where('brand_id',5);
+        // $material->brand_id; //? renvoi bien 5
+
+        $brand = $material->brand; //? renvoi bien le nom de la marque
+        $photos = $material->photos;
+        
+        // i retrieve temporarly the first photo:
+        $photo1 = $photos[0]; //! temporary
+        
+        $assetPath = "storage/img/material/".$photo1->file."";
+                
+        $user = $material->user;
+        $city = $user->address->city;
 
         // todo: si user_id  est egale au  material->user_id
             // passer dans la vue la route pour faire un 'edit' + et passer le material_id aussi
@@ -153,9 +200,14 @@ class MaterialController extends Controller
 
         return view('layout_extends.material.layout_ext_materialShow', array(
             'title' => 'bienvenue sur la page MATERIAL SHOW',
+            'material' => $material,
+            'brand' => $brand,
+            'user' => $user,
+            'city' => $city,
+            'photos' => $photos,
+            'photo1' => $photo1, //! temporary
+            'assetPath' => $assetPath,
             'routeName' => 'materials.update',
-            'materialToShow' => $materialToShow,
-            'brandToShow' => $materialToShow->brand->name,  //! peut être que je vais virer ça et le faire dans la vue
             'submitActionRoute' => route('materials.update', $id),
             'submitButtonName' => 'Valider les changements'
         ));
@@ -170,16 +222,18 @@ class MaterialController extends Controller
     public function edit($id)
     {
         // Get a collection of brands from database:
-        $brands = \App\Brand::all()->sortBy('name');
+        // $brands = \App\Brand::all()->sortBy('name');
 
         // Get the Material by id from the database
-        $materialToEdit = \App\Material::find($id);
+        $material = \App\Material::find($id);
+        $brand = $material->brand;
+
 
         return view('layout_extends.material.layout_ext_materialCreate', array(
             'title' => 'bienvenue sur la page MATERIAL CREATE',
             'routeName' => 'materials.update',
-            'brands' => $brands,
-            'materialToEdit' => $materialToEdit,
+            // 'brands' => $brands,
+            'material' => $material,
             'submitActionMethod' => 'PUT',
             'submitActionRoute' => route('materials.update', $id),
             'submitButtonName' => 'Valider les changements'
@@ -199,7 +253,7 @@ class MaterialController extends Controller
     public function update(Request $request, $id)
     {
         // here we retrieve again the material to update.
-        $materialToEdit = \App\Material::find($id);
+        $material = \App\Material::find($id);
 
         // save informations form the request into the edited Material tuple in database
         $material->brand_id = $request->input('material_brand_id');

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Address;
+use App\City;
+
 
 class HomeController extends Controller
 {
@@ -30,9 +33,22 @@ class HomeController extends Controller
         // find a user in database having that id 
         $user = \App\User::find($userIdFromAuth);
 
+        if( is_null($user->address_id) ){
+            $address = new Address;
+        } else {
+            $address = $user->address;
+        }
+        if( is_null($address->city_id) ){
+            $city = new City;
+        } else {
+            $city = $user->address->city;
+        }
+
         return view('home', array(
             'title' => 'MTM - Mon espace',
-            'user' => $user
+            'user' => $user,
+            'address' => $address,
+            'city' => $city
          ));
     }
 

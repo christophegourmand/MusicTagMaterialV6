@@ -16,7 +16,7 @@ class CreateAudiosTable extends Migration
         Schema::create('audios', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('videolink');
+            $table->string('link');
             $table->string('description')->nullable();
 
             // Here I set the foreign key for relation :

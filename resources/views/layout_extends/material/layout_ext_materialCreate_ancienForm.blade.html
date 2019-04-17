@@ -1,0 +1,141 @@
+<!-- TODO : ICI AJOUTER CHAMPS 'MARQUE/FABRICANT', Attention, on doit pouvoir en choisir plusieurs -->
+
+<div class="form-row my-md-3">
+    <label for="material_category_id" class="col-md-4 col-form-label text-md-right">{{ __('Catégorie*') }}</label>
+    <div class="col-md-6">
+        <select id="material_category_id" class="form-control" name="material_category_id">
+            @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach()
+        </select>
+
+        @if ($errors->has('material_category_id'))
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('material_category_id') }}</strong>
+        </span>
+        @endif
+    </div>
+</div>
+
+<!-- ========= AJOUTER CET INPUT DE MARQUE AVEC RECUPERATION DE LA MARQUE PRECEDENTE SI EXISTE ========== -->
+
+<div class="form-row my-md-3">
+    <label for="material_brand"
+        class="col-md-4 col-form-label text-md-right">{{ __('Marque version input *') }}</label>
+    <div class="col-md-6">
+        <input id="material_brand" type="text" class="form-control" name="material_brand"
+            value="{{$brand->name}}" required autofocus>
+        @if ($errors->has('material_brand'))
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('material_brand') }}</strong>
+        </span>
+        @endif
+    </div>
+</div>
+
+
+<div class="form-row my-md-3">
+    <label for="material_productmodel"
+        class="col-md-4 col-form-label text-md-right">{{ __('Modèle/référence du matériel*') }}</label>
+    <div class="col-md-6">
+        <input id="material_productmodel" type="text" class="form-control" name="material_productmodel"
+            value="{{$material->productmodel}}" required autofocus>
+        @if ($errors->has('material_productmodel'))
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('material_productmodel') }}</strong>
+        </span>
+        @endif
+    </div>
+</div>
+
+<div class="form-row my-md-3">
+    <label for="material_material_builtyear"
+        class="col-md-4 col-form-label text-md-right">{{ __('Date de fabrication') }}</label>
+    <div class="col-md-6">
+        <input id="material_builtyear" type="date" class="form-control" name="material_builtyear"
+            value="{{$material->builtyear}}" autofocus>
+        @if ($errors->has('material_builtyear'))
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('material_builtyear') }}</strong>
+        </span>
+        @endif
+    </div>
+</div>
+
+<div class="form-row my-md-3">
+    <label for="material_description" class="col-md-4 col-form-label text-md-right">Description :</label>
+    <div class="col-md-6">
+        <textarea id="material_description" name="material_description" class="form-control"
+            rows="5">{{$material->description}}</textarea>
+        @if ($errors->has('material_description'))
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('material_description') }}</strong>
+        </span>
+        @endif
+    </div>
+</div>
+
+
+<div class="form-row my-md-3">
+    <label for="material_price" class="col-md-4 col-form-label text-md-right">{{ __('Prix*') }}</label>
+    <div class="col-md-6">
+        <input id="material_price" type="number" class="form-control" name="material_price"
+            value="{{$material->price}}" required autofocus>
+        @if ($errors->has('material_price'))
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('material_price') }}</strong>
+        </span>
+        @endif
+    </div>
+</div>
+
+<div class="form-row my-md-3">
+    <div class="col-md-4 col-form-label text-md-right">
+        <p class="">Photo 1 et </p>
+        <label for="photo1_altdescription" class="">{{ __('description de la photo1') }}</label>
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="custom-file col-3">
+            <input type="file" class="custom-file-input" id="material_photo_1" name="material_photo_1" >
+            @if ($errors->has('material_photo_1'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('material_photo_1') }}</strong>
+                </span>
+            @endif
+            <label class="custom-file-label" for="material_photo_1">Ajouter une image</label>
+        </div>
+
+        <!-- <div class="">
+            <input id="photo1_altdescription" type="text" class="form-control" name="photo1_altdescription" value="{{$photo1->altdescription}}" required autofocus>
+            @if ($errors->has('photo1_altdescription'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('photo1_altdescription') }}</strong>
+                </span>
+            @endif
+        </div> -->
+
+    </div>
+
+
+</div>
+
+<!-- 
+<div class="form-row my-md-3">
+    <p class="col-md-4 col-form-label text-md-right">Photo 1</p>
+
+    <div class="col-md-6">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="material_photo_1" name="material_photo_1" >
+            @if ($errors->has('material_photo_1'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('material_photo_1') }}</strong>
+                </span>
+            @endif
+            <label class="custom-file-label" for="material_photo_1">Ajouter une image</label>
+        </div>
+    </div>
+    
+</div>
+-->

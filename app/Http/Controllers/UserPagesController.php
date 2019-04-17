@@ -69,13 +69,33 @@ class UserPagesController extends Controller
         $user->phone;
         $user->address()->name; // besoin de ->get()->name
         */
+        
+        // instanciation of tempty address, city and country, to avoid a bug in the form
+        if( is_null($user->address_id) ){
+            $address = new Address;
+        } else {
+            $address = $user->address;
+        }
+        if( is_null($address->city_id) ){
+            $city = new City;
+        } else {
+            $city = $user->address->city;
+        }
+        if( is_null($city->country_id) ){
+            $country = new Country;
+        } else {
+            $country = $user->address->city->country;
+        }
 
         return view('layout_extends.user.layout_ext_formSellerInfos', array(
             'title' => 'Informations necessaires pour vendre du materiel',
             'submitActionMethod' => 'POST',
             'submitActionRoute' => route('store_seller_form'),
             // 'submitButtonName' => 'Valider les changements',
-            'user' => $user
+            'user' => $user,
+            'address' => $address,
+            'city' => $city,
+            'country' => $country
         ));
         
     }
@@ -90,8 +110,6 @@ class UserPagesController extends Controller
      */
     public function storeSellerForm(Request $request)
     {   
-        // dd($request); // 💀🔺
-
         // validation of forms fields
         $this->validate($request, [
             // --- public infos ---

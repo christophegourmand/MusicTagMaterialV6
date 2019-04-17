@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
             $table->string('lastname', 50)->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('avatar')->nullable();
-            // + adresse_id clé étrangère
 
             // Here I set the foreign key for relation :
             // (0,1) Addresses reference (1,N) users

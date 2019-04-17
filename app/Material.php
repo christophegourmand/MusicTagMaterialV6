@@ -8,6 +8,15 @@ class Material extends Model
 {
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'productmodel','builtyear','description','price','user_id','brand_id','category_id'
+    ];
+
+    /**
      * Get the brands related to that material. //! avant j'avais marqué function brands() au pluriel
      */
     public function brand()

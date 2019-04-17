@@ -7,7 +7,7 @@
 @section('layout_block_customStylesheets')
     <style>
         div{
-            border: 1px solid blue;
+            /* border: 1px solid blue; */
         }
     </style>
 @endsection
@@ -58,15 +58,15 @@
             </div>
             
             <div class="">
-                <p>{{$user->address->street}}</p>
+                <p>{{$address->street}}</p>
             </div>
             
             <div class="">
-                <p>{{$user->address->city->name}}</p>
+                <p>{{$city->name}}</p>
             </div>
             
             <div class="">
-                <p>{{$user->address->city->zipcode}}</p>
+                <p>{{$city->zipcode}}</p>
             </div>
             <!--  
             -->

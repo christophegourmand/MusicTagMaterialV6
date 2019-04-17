@@ -79,15 +79,18 @@ class BrandController extends Controller
             $fileNameWithExtension = $request->file('brand_photo')->getClientOriginalName();
             //get just filename:
             $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
-            // get jsut extension
+            // get just extension
             $extension = $request->file('brand_photo')->getClientOriginalExtension();
+            
             // filename to store:
             $fileNameToStore = 'brand'.'_'.$fileName.'.'.$extension;
             // upload image:
-            //$path = $request->file('brand_photo')->storeAs('brands_images', $fileNameToStore); //? fonctionne mais j'essaye d'uploader dans 'public'
+            //$path = $request->file('brand_photo')->storeAs('brands_images', $fileNameToStore); //? V1) works to store in '\storage\' but i prefer to store in '\public\storage\'
 
-            //? j'essaye une 2eme methode :
-            // Storage::disk('public')->put('brand_photos', $request->file('brand_photo')); //? fonctionne mais le nom du fichier est cod2
+            //? V2) it try  2nd method
+            // Storage::disk('public')->put('brand_photos', $request->file('brand_photo')); //? works but the filename is encoded.
+            
+            //? V3) it upload the file in '\public\storage\' with correct filename 
             Storage::disk('public')->putFileAs($folderName, $fileUploaded, $fileNameToStore);
 
         } else {

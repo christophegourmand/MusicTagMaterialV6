@@ -51,7 +51,7 @@
             <div class="col-md-4 m-3 m-md-4 border border-light rounded">
                 <h2>Infos publique</h2>
 
-                <div class="d-flex flex-column flex-md-row justify-content-md-around align-items-md-center">
+                <div class="d-flex flex-column justify-content-md-around ">
 
                     <div class="form-group">
                         <label for="name" class="">{{ __('Pseudo*') }}</label>
@@ -65,21 +65,26 @@
                         </div>
                     </div>
                     <!-- .....................  -->
-                    <div class="">
-                        <div class="avatar-wrapper">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label class="" for="avatar">Ajouter une image d'avatar</label>
+                            <input class="" type="file" accept="image/*" id="avatar" name="avatar"/>
+                        </div>
+
+                        @if ($errors->has('avatar'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('avatar') }}</strong>
+                        </span>
+                        @endif
+                        <!-- <div class="avatar-wrapper">
                             <img class="profile-pic" src="" />
                             <div class="upload-button">
                                 <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                             </div>
-                            <input class="file-upload" type="file" accept="image/*" id="avatar" name="avatar"/>
-                            <label class="custom-file-label" for="avatar">Ajouter un image</label>
-                            @if ($errors->has('avatar'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('avatar') }}</strong>
-                            </span>
-                            @endif
-                        </div>
+                            
+                        </div> -->
                     </div>
+
                     <!-- .....................  -->
                 </div> <!-- fin flex -->
                 <!-- ================================================================ -->

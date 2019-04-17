@@ -16,8 +16,8 @@ class CreatePhotosTable extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('photo');
-            $table->string('altdescription', 100)->nullable();
+            $table->string('file'); // todo if possible, next time rename it 'name' ,   to make 'photo->name' instead of 'photo->photo' 
+            $table->string('description', 100)->nullable();
 
             // Here I set the foreign key for relation :
             // (1,1) Material reference (0,N) photos

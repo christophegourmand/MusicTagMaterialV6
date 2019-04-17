@@ -23,28 +23,29 @@
                 <div class="col-lg-8 p-0">
                     <div class="col-lg-7 bg-danger">
                         <h3>
-                            {{$materialToShow->brand->name}}
+                            {{$brand->name}}
                         </h3>
                     </div>
                     <div class="col-lg-12 p-0">
                         <h3>
-                            {{$materialToShow->productmodel}}
+                            {{$material->productmodel}}
                         </h3>
                     </div>
                 </div>
                 <div class="col-lg-4 text-right">
                     <div class="">
-                        <h3>Ville</h3>
+                        <h3>{{ $city->name }}</h3>
                     </div>
                     <div class="">
-                        <h3>{{$materialToShow->price}} €</h3>
+                        <h3>{{$material->price}} €</h3>
                     </div>
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-lg-6 p-0 border-brownYellow">
-                    <img src="{{asset('storage/img/material/Gibson_sg-standard_01.jpg')}}" alt="Photo du produit">
+                    <img src="{{asset( $assetPath )}}" alt="Photo du produit" class="mw-100">
+                    <!-- <img src="{{asset( 'storage/img/material/noimage.jpg' )}}" alt="Photo du produit" class="mw-100"> -->
                
                     
                     <!-- <div class="carousel slide">
@@ -77,7 +78,7 @@
 
                 </div>
                 <div class="col-lg-5 pt-3 border-brownYellow bg-brownDarkLeather text-brownYellow">
-                    {{$materialToShow->description}}
+                    {{$material->description}}
                 </div>
             </div>
         </div>

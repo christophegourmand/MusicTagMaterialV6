@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label for="city" class="">{{ __('Ville *') }}</label>
                     <div class="">
-                        <input id="city" type="text" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" value="{{ old('city') }}" required>
+                        <input id="city" type="text" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" value="{{ $city->name }}" required>
                         @if ($errors->has('city'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('city') }}</strong>
@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <label for="zipcode" class="">{{ __('Codepostal *') }}</label>
                     <div class="">
-                        <input id="zipcode" type="text" class="form-control{{ $errors->has('zipcode') ? ' is-invalid' : '' }}" name="zipcode" value="{{ old('zipcode') }}" required>
+                        <input id="zipcode" type="text" class="form-control{{ $errors->has('zipcode') ? ' is-invalid' : '' }}" name="zipcode" value="{{ $city->zipcode }}" required>
                         @if ($errors->has('zipcode'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('zipcode') }}</strong>
@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <label for="country" class="">{{ __('Pays *') }}</label>
                     <div class="">
-                        <input id="country" type="text" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ old('country') }}" required>
+                        <input id="country" type="text" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ $country->name }}" required>
                         @if ($errors->has('country'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('country') }}</strong>
@@ -110,7 +110,7 @@
                 <div class="form-group">
                     <label for="street" class="">{{ __('Adresse * (doit obligatoirement etre accomagne de ville, CP, pays)') }}</label>
                     <div class="">
-                        <input id="street" type="text" class="form-control" name="street" value="{{ $user->address }}" required autofocus>
+                        <input id="street" type="text" class="form-control" name="street" value="{{ $address->street }}" required autofocus>
                         @if ($errors->has('street'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('street') }}</strong>
